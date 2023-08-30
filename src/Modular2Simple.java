@@ -209,6 +209,8 @@ public class Modular2Simple {
                     simpleScenarioFileName = convertRecursiveModularToSimple(simpleScenarioFileName, fileModularPathAndName);
                 }
                 if (simpleScenarioFileName.endsWith(SIMPLE_FILE_EXTENSION)) {
+                    processedMoscFiles.clear();
+
                     LOGGER.fine("--- Handling simple scenario: '%s'".formatted(simpleScenarioFileName));
 
                     NodeList simpleManeuverGroupNodeList = extractManeuverGroupNodesFromSimpleScenario(simpleScenarioFileName, fileModularPathAndName);
@@ -331,19 +333,10 @@ public class Modular2Simple {
     }
 
     private static void checkCircularReferences(String fileNameAndPath) {
-        processedMoscFiles.add(fileNameAndPath);
-
-        if (processedMoscFiles.size() % 50 == 0) {
-            List<String> cyclingFiles = findCyclingFiles();
-
-            boolean isCircularReferences = cyclingFiles.stream()
-                    .filter(oneCyclingFile -> Collections.frequency(processedMoscFiles, oneCyclingFile) >= 15)
-                    .count() == cyclingFiles.size();
-
-            if (isCircularReferences) {
-                String cyclingFileNames = String.join("\n", cyclingFiles);
-                handleExceptionShutdown("Circular references detected in the following files:" + "\n" + cyclingFileNames);
-            }
+        if (processedMoscFiles.contains(fileNameAndPath)) {
+            handleExceptionShutdown("Circular references detected in the following files:" + "\n" + String.join("\n", processedMoscFiles));
+        } else {
+            processedMoscFiles.add(fileNameAndPath);
         }
     }
 
@@ -466,25 +459,6 @@ public class Modular2Simple {
         } catch (IOException e) {
             handleExceptionShutdown("An error occurred while deleting file/directory: " + fileOrDirectory.getAbsolutePath(), e);
         }
-    }
-
-    private static List<String> findCyclingFiles() {
-        for (int i = 0; i < processedMoscFiles.size(); i++) {
-            List<String> sequence = new ArrayList<>();
-            int currentIndex = i;
-
-            while (currentIndex < processedMoscFiles.size()) {
-                String currentFile = processedMoscFiles.get(currentIndex);
-                sequence.add(currentFile);
-
-                if (sequence.size() > 1 && sequence.get(0).equals(sequence.get(sequence.size() - 1))) {
-                    return sequence.subList(0, sequence.size() - 1);
-                }
-
-                currentIndex++;
-            }
-        }
-        return new ArrayList<>();
     }
 
     static {
