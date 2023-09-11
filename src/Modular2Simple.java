@@ -22,16 +22,16 @@ import java.util.logging.*;
 import java.util.logging.Formatter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class Modular2Simple {
 
     private static final String COMMAND_HELP_FULL = "--help";
     private static final String COMMAND_HELP_SHORT = "-h";
-    private static final String COMMAND_ZIP_TO_MOSC_FULL = "--convert-zip-to-mosc";
-    private static final String COMMAND_ZIP_TO_MOSC_SHORT = "-czm";
+    private static final String COMMAND_XOSC_TO_MOSC_FULL = "--package-xosc-into-mosc";
+    private static final String COMMAND_XOSC_TO_MOSC_SHORT = "-cxm";
     private static final String COMMAND_MOSC_TO_XOSC_FULL = "--convert-mosc-to-xosc";
     private static final String COMMAND_MOSC_TO_XOSC_SHORT = "-cmx";
-    private static final String ZIP_FILE_EXTENSION = ".zip";
     private static final String MODULAR_FILE_EXTENSION = ".mosc";
     private static final String SIMPLE_FILE_EXTENSION = ".xosc";
     private static final String MAIN_FILE_NAME = "main" + SIMPLE_FILE_EXTENSION;
@@ -47,22 +47,31 @@ public class Modular2Simple {
 
         switch (args[0]) {
             case COMMAND_HELP_FULL, COMMAND_HELP_SHORT -> printHelp();
-            case COMMAND_ZIP_TO_MOSC_FULL, COMMAND_ZIP_TO_MOSC_SHORT -> convertZipToMosc(args[1]);
-            case COMMAND_MOSC_TO_XOSC_FULL, COMMAND_MOSC_TO_XOSC_SHORT -> convertMoscToXosc(args[1], args[2]);
+            case COMMAND_XOSC_TO_MOSC_FULL, COMMAND_XOSC_TO_MOSC_SHORT -> packageXoscIntoMosc(args);
+            case COMMAND_MOSC_TO_XOSC_FULL, COMMAND_MOSC_TO_XOSC_SHORT -> convertMoscToXosc(args);
             default -> System.out.println("No such option: " + args[0] + ". Use --help to see available options.");
         }
     }
 
     private static void checkCommandLineArguments(String[] args) {
         switch (args[0]) {
-            case COMMAND_ZIP_TO_MOSC_FULL, COMMAND_ZIP_TO_MOSC_SHORT -> {
-                if (args.length != 2) {
-                    handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_file>"
-                            .formatted(COMMAND_ZIP_TO_MOSC_FULL, ZIP_FILE_EXTENSION.replace(".", "")));
+            case COMMAND_XOSC_TO_MOSC_FULL, COMMAND_XOSC_TO_MOSC_SHORT -> {
+                for (int i = 1; i < args.length - 1; i++) {
+                    if (!args[i].endsWith(SIMPLE_FILE_EXTENSION)) {
+                        handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_files> <output_%s_file>"
+                                .formatted(args[0], SIMPLE_FILE_EXTENSION.replace(".", ""), MODULAR_FILE_EXTENSION.replace(".", "")));
+                    }
                 }
-
-                if (!args[1].endsWith(ZIP_FILE_EXTENSION)) {
-                    handleExceptionShutdown("Invalid command-line arguments. Expected extension: " + ZIP_FILE_EXTENSION);
+                if (!args[args.length - 1].endsWith(MODULAR_FILE_EXTENSION)) {
+                    handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_files> <output_%s_file>"
+                            .formatted(args[0], SIMPLE_FILE_EXTENSION.replace(".", ""), MODULAR_FILE_EXTENSION.replace(".", "")));
+                }
+                if (Arrays.stream(args).distinct().count() != args.length) {
+                    handleExceptionShutdown("Invalid command-line arguments. File names must be unique");
+                }
+                if (Arrays.stream(args).filter(arg -> arg.equals(MAIN_FILE_NAME)).toList().size() != 1) {
+                    handleExceptionShutdown("Invalid command-line arguments. One of the input files must be named '%s'"
+                            .formatted(MAIN_FILE_NAME));
                 }
             }
             case COMMAND_MOSC_TO_XOSC_FULL, COMMAND_MOSC_TO_XOSC_SHORT -> {
@@ -85,54 +94,68 @@ public class Modular2Simple {
                 "  java Modular2Simple <command> [options]" + "\n\n" +
                 "Commands:" + "\n" +
                 "  " + COMMAND_HELP_FULL + ", " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t\t\t" + "Display help message." + "\n" +
-                "  " + COMMAND_ZIP_TO_MOSC_FULL + ", " + COMMAND_ZIP_TO_MOSC_SHORT + " <input_zip_file>" + "\t\t\t\t" + "Convert a .zip file to .mosc format." + "\n" +
+                "  " + COMMAND_XOSC_TO_MOSC_FULL + ", " + COMMAND_XOSC_TO_MOSC_SHORT + " <input_xosc_files> <output_mosc_file>" + "\t\t\t\t" + "Package .xosc files into .mosc." + "\n" +
                 "  " + COMMAND_MOSC_TO_XOSC_FULL + ", " + COMMAND_MOSC_TO_XOSC_SHORT + " <input_mosc_file> <output_xosc_file>" + "\t" + "Convert a .mosc file to .xosc file." + "\n" +
                 "\n" +
                 "Examples:" + "\n" +
                 "  java Modular2Simple " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t" + "Display help message." + "\n" +
                 "  java Modular2Simple " + COMMAND_HELP_FULL + "\t\t\t\t\t\t" + "Display help message." + "\n" +
-                "  java Modular2Simple " + COMMAND_ZIP_TO_MOSC_SHORT + " input.zip" + "\t\t\t\t\t" + "Convert input.zip to .mosc format." + "\n" +
-                "  java Modular2Simple " + COMMAND_ZIP_TO_MOSC_FULL + " input.zip" + "\t\t\t" + "Convert input.zip to .mosc format." + "\n" +
+                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_SHORT + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
+                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_FULL + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
                 "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_SHORT + " input.mosc output.xosc" + "\t\t\t" + "Convert input.mosc to output.xosc file." + "\n" +
                 "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_FULL + " input.mosc output.xosc" + "\t" + "Convert input.mosc to output.xosc file." + "\n"
         );
     }
 
-    private static void convertZipToMosc(String... fileNames) {
-        String zipFilePath = fileNames[0];
-        checkIfFileExists(zipFilePath);
+    private static void convertMoscToXosc(String[] args) {
+        String moscFileName = args[1];
+        String resultingFileName = args[2];
 
-        File zipFile = new File(zipFilePath);
-        File moscFile = new File(zipFile.getAbsolutePath().replace(ZIP_FILE_EXTENSION, MODULAR_FILE_EXTENSION));
-
-        if (zipFile.renameTo(moscFile)) {
-            LOGGER.info("File conversion completed. Modified file: '%s'".formatted(moscFile.getName()));
-        } else {
-            handleExceptionShutdown("Failed to convert '%s' to '%s'".formatted(zipFilePath, moscFile.getName()));
-        }
-    }
-
-    private static void convertMoscToXosc(String... fileNames) {
-        extractFilesFromMosc(fileNames[0]);
+        extractFilesFromMosc(moscFileName);
 
         File fileModular = new File(EXTRACTION_PATH + MAIN_FILE_NAME);
-        String fileModular_Content = readContentFromFile(fileModular, fileNames[0]);
+        String fileModular_Content = readContentFromFile(fileModular, moscFileName);
 
-        String fileModular_ModifiedContent = replaceManeuverGroupTags(fileModular_Content, fileNames[0], fileModular.getName());
+        String fileModular_ModifiedContent = replaceManeuverGroupTags(fileModular_Content, moscFileName, fileModular.getName());
 
-        writeContentToFileResult(new File(fileNames[1]), fileModular_ModifiedContent);
+        writeContentToFileResult(new File(resultingFileName), fileModular_ModifiedContent);
 
-        printConversionSuccessLog(fileModular, fileNames[1]);
+        printConversionSuccessLog(fileModular, resultingFileName);
 
         Runtime.getRuntime().addShutdownHook(new Thread(Modular2Simple::deleteTemporaryExtractionPath));
     }
 
     // helper methods
 
+    private static void packageXoscIntoMosc(String[] args) {
+        String[] xoscFileNames = Arrays.copyOfRange(args, 1, args.length - 1);
+        String moscFileName = args[args.length - 1];
+
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(moscFileName))) {
+            for (String xoscFileName : xoscFileNames) {
+                checkIfFileExists(xoscFileName);
+                File xoscFile = new File(xoscFileName);
+
+                zipOutputStream.putNextEntry(new ZipEntry(xoscFile.getName()));
+                try (FileInputStream fileInputStream = new FileInputStream(xoscFile)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                        zipOutputStream.write(buffer, 0, bytesRead);
+                    }
+                }
+                zipOutputStream.closeEntry();
+            }
+            LOGGER.info("Files %s packaged into '%s'".formatted(Arrays.toString(xoscFileNames), moscFileName));
+        } catch (IOException e) {
+            handleExceptionShutdown("Error packaging XOSC files into MOSC", e);
+        }
+    }
+
     private static void checkIfFileExists(String filePath) {
-        File moscFile = new File(filePath);
-        if (!moscFile.exists()) {
-            handleExceptionShutdown("File '%s' not found".formatted(moscFile));
+        File file = new File(filePath);
+        if (!file.exists()) {
+            handleExceptionShutdown("File '%s' not found".formatted(file));
         }
     }
 
