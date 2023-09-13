@@ -37,6 +37,7 @@ public class Modular2Simple {
     private static final String MAIN_FILE_NAME = "main" + SIMPLE_FILE_EXTENSION;
     private static final String SIMPLE_SCENARIO_PATH_ENV_VAR = "SIMPLE_SCENARIO_PATH";
     private static final String EXTRACTION_PATH = "tmp/";
+    private static final String CHANGEABLE_ATTRIBUTES_KEY = "parameterAttributes";
     private static final Logger LOGGER = Logger.getLogger(Modular2Simple.class.getName());
     private static final Level LOGGER_LEVEL = Level.INFO;
 
@@ -396,22 +397,57 @@ public class Modular2Simple {
         NodeList childNodes = node.getChildNodes();
         for (int j = 0; j < childNodes.getLength(); j++) {
             Node childNode = childNodes.item(j);
-            if (childNode instanceof Element) {
-                String parameterAttributes = ((Element) childNode).getAttribute("parameterAttributes");
+            if (childNode instanceof Element childElement) {
+                String parameterAttributes = childElement.getAttribute(CHANGEABLE_ATTRIBUTES_KEY);
                 if (!parameterAttributes.isEmpty()) {
-                    ((Element) childNode).removeAttribute("parameterAttributes");
-                    String[] parameterAttributesArray = parameterAttributes.split(",");
-                    for (String attribute : parameterAttributesArray) {
-                        attribute = attribute.trim();
-                        if (((Element) childNode).hasAttribute(attribute)) {
-                            String newValue = parameterReferenceKeyValuePairs.get(attribute);
-                            ((Element) childNode).setAttribute(attribute, newValue);
-                        }
-                    }
+                    childElement.removeAttribute(CHANGEABLE_ATTRIBUTES_KEY);
+                    Arrays.stream(parameterAttributes.split(","))
+                            .forEach(attribute -> processAttribute(parameterReferenceKeyValuePairs, attribute.trim(), childElement));
                 }
                 replaceParameterAttributesWithParameterReferenceKeys(childNode, parameterReferenceKeyValuePairs);
             }
             LOGGER.fine("---- Node " + nodeToString(childNode, true) + " processed");
+        }
+    }
+
+    private static void processAttribute(Map<String, String> parameterReferenceKeyValuePairs, String attribute, Element childElement) {
+        if (childElement.hasAttribute(attribute)) {
+            if (parameterReferenceKeyValuePairs.containsKey(attribute)) {
+                String newValue = parameterReferenceKeyValuePairs.get(attribute);
+                childElement.setAttribute(attribute, newValue);
+            } else {
+                parameterReferenceKeyValuePairs.keySet()
+                        .forEach(key -> processParameterReferenceKey(parameterReferenceKeyValuePairs, attribute, childElement, key));
+            }
+        }
+    }
+
+    private static void processParameterReferenceKey(Map<String, String> parameterReferenceKeyValuePairs, String attribute, Element childElement, String key) {
+        if (key.endsWith(attribute)) {
+            String[] parentsArrayWithKey = key.split("\\.");
+            String[] parentsArray = new String[parentsArrayWithKey.length - 1];
+            if (parentsArray.length - 1 >= 0) {
+                System.arraycopy(parentsArrayWithKey, 0, parentsArray, 0, parentsArray.length);
+            }
+            String attributeWithParents = parentsArray[parentsArray.length - 1] + "." + attribute;
+            if (key.equals(attributeWithParents) &&
+                    parentsArray[parentsArray.length - 1].equals(childElement.getNodeName())) {
+                String newValue = parameterReferenceKeyValuePairs.get(attributeWithParents);
+                childElement.setAttribute(attribute, newValue);
+            } else if (key.endsWith(attributeWithParents) &&
+                    parentsArray[parentsArray.length - 1].equals(childElement.getNodeName())) {
+                Node tempNode = childElement.getParentNode();
+                for (int i = 2; i <= parentsArray.length; i++) {
+                    attributeWithParents = parentsArray[parentsArray.length - i] + "." + attributeWithParents;
+                    if (key.equals(attributeWithParents) &&
+                            parentsArray[parentsArray.length - i].equals(tempNode.getNodeName())) {
+                        String newValue = parameterReferenceKeyValuePairs.get(attributeWithParents);
+                        childElement.setAttribute(attribute, newValue);
+                    } else {
+                        tempNode = tempNode.getParentNode();
+                    }
+                }
+            }
         }
     }
 
