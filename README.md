@@ -26,10 +26,10 @@ Using the Modular2Simple
 
 #### To package a set of .xosc files into a .mosc file, use the following command:
 
-* java Modular2Simple --convert-xosc-to-mosc <input_xosc_files> <output_mosc_file>
+* java Modular2Simple --convert-xosc-to-mosc <input_xosc_(mosc)_files> <output_mosc_file>
 
-Replace <input_xosc_files> with the path to input .xosc files (the main scenario file must be named 'main.xosc'), and 
-<output_mosc_file> with the desired path for the output modular scenario file.
+Replace <input_xosc_(mosc)_files> with the path to input .xosc (.mosc) files (the main scenario file must be named 
+'main.xosc'), and <output_mosc_file> with the desired path for the output modular scenario file.
 
 Example
 * java Modular2Simple --convert-xosc-to-mosc main.xosc simple_1.xosc simple_2.xosc modular.mosc
