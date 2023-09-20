@@ -50,5 +50,5 @@ This command will convert the 'modular.mosc' file into a scenario file named 're
 
 Documentation
 ---------------------------
-For more details of if you run into problems, check our
+For more details or if you run into problems, check our
 [Documentation](http://link-to-documentation). <-- (insert link to documentation) 

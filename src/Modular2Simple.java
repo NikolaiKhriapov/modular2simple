@@ -54,6 +54,72 @@ public class Modular2Simple {
         }
     }
 
+    private static void printHelp() {
+        System.out.println("\n" +
+                "Usage:" + "\n" +
+                "  java Modular2Simple <command> [options]" + "\n\n" +
+                "Commands:" + "\n" +
+                "  " + COMMAND_HELP_FULL + ", " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t\t\t" + "Display help message." + "\n" +
+                "  " + COMMAND_XOSC_TO_MOSC_FULL + ", " + COMMAND_XOSC_TO_MOSC_SHORT + " <input_xosc_files> <output_mosc_file>" + "\t\t\t\t" + "Package .xosc files into .mosc." + "\n" +
+                "  " + COMMAND_MOSC_TO_XOSC_FULL + ", " + COMMAND_MOSC_TO_XOSC_SHORT + " <input_mosc_file> <output_xosc_file>" + "\t" + "Convert a .mosc file to .xosc file." + "\n" +
+                "\n" +
+                "Examples:" + "\n" +
+                "  java Modular2Simple " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t" + "Display help message." + "\n" +
+                "  java Modular2Simple " + COMMAND_HELP_FULL + "\t\t\t\t\t\t" + "Display help message." + "\n" +
+                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_SHORT + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
+                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_FULL + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
+                "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_SHORT + " input.mosc output.xosc" + "\t\t\t" + "Convert input.mosc to output.xosc file." + "\n" +
+                "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_FULL + " input.mosc output.xosc" + "\t" + "Convert input.mosc to output.xosc file." + "\n"
+        );
+    }
+
+    private static void packageXoscIntoMosc(String[] args) {
+        String[] xoscFileNames = Arrays.copyOfRange(args, 1, args.length - 1);
+        String moscFileName = args[args.length - 1];
+
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(moscFileName))) {
+            for (String xoscFileName : xoscFileNames) {
+                checkIfFileExists(xoscFileName);
+                File xoscFile = new File(xoscFileName);
+
+                zipOutputStream.putNextEntry(new ZipEntry(xoscFile.getName()));
+                try (FileInputStream fileInputStream = new FileInputStream(xoscFile)) {
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                        zipOutputStream.write(buffer, 0, bytesRead);
+                    }
+                }
+                zipOutputStream.closeEntry();
+            }
+            LOGGER.info("Files %s packaged into '%s'".formatted(Arrays.toString(xoscFileNames), moscFileName));
+        } catch (IOException e) {
+            handleExceptionShutdown("Error packaging XOSC files into MOSC", e);
+        }
+    }
+
+    private static void convertMoscToXosc(String[] args) {
+        String moscFileName = args[1];
+        String resultingFileName = args[2];
+
+        extractFilesFromMosc(moscFileName);
+
+        File fileModular = new File(EXTRACTION_PATH + MAIN_FILE_NAME);
+        String fileModular_Content = readContentFromFile(fileModular, moscFileName);
+
+        String fileModular_ModifiedContent = replaceManeuverGroupTags(fileModular_Content, moscFileName, fileModular.getName());
+
+        writeContentToFileResult(new File(resultingFileName), fileModular_ModifiedContent);
+
+        printConversionSuccessLog(fileModular, resultingFileName);
+
+        removeCurrentMoscFileFromProcessedMoscFiles(moscFileName);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(Modular2Simple::deleteTemporaryExtractionPath));
+    }
+
+    // helper methods
+
     private static void checkCommandLineArguments(String[] args) {
         switch (args[0]) {
             case COMMAND_XOSC_TO_MOSC_FULL, COMMAND_XOSC_TO_MOSC_SHORT -> {
@@ -86,70 +152,6 @@ public class Modular2Simple {
                             .formatted(MODULAR_FILE_EXTENSION, SIMPLE_FILE_EXTENSION));
                 }
             }
-        }
-    }
-
-    private static void printHelp() {
-        System.out.println("\n" +
-                "Usage:" + "\n" +
-                "  java Modular2Simple <command> [options]" + "\n\n" +
-                "Commands:" + "\n" +
-                "  " + COMMAND_HELP_FULL + ", " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t\t\t" + "Display help message." + "\n" +
-                "  " + COMMAND_XOSC_TO_MOSC_FULL + ", " + COMMAND_XOSC_TO_MOSC_SHORT + " <input_xosc_files> <output_mosc_file>" + "\t\t\t\t" + "Package .xosc files into .mosc." + "\n" +
-                "  " + COMMAND_MOSC_TO_XOSC_FULL + ", " + COMMAND_MOSC_TO_XOSC_SHORT + " <input_mosc_file> <output_xosc_file>" + "\t" + "Convert a .mosc file to .xosc file." + "\n" +
-                "\n" +
-                "Examples:" + "\n" +
-                "  java Modular2Simple " + COMMAND_HELP_SHORT + "\t\t\t\t\t\t" + "Display help message." + "\n" +
-                "  java Modular2Simple " + COMMAND_HELP_FULL + "\t\t\t\t\t\t" + "Display help message." + "\n" +
-                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_SHORT + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
-                "  java Modular2Simple " + COMMAND_XOSC_TO_MOSC_FULL + " input_1.xosc input_2.xosc output.mosc" + "\t\t\t" + "Package input_1.xosc input_2.xosc into output.mosc." + "\n" +
-                "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_SHORT + " input.mosc output.xosc" + "\t\t\t" + "Convert input.mosc to output.xosc file." + "\n" +
-                "  java Modular2Simple " + COMMAND_MOSC_TO_XOSC_FULL + " input.mosc output.xosc" + "\t" + "Convert input.mosc to output.xosc file." + "\n"
-        );
-    }
-
-    private static void convertMoscToXosc(String[] args) {
-        String moscFileName = args[1];
-        String resultingFileName = args[2];
-
-        extractFilesFromMosc(moscFileName);
-
-        File fileModular = new File(EXTRACTION_PATH + MAIN_FILE_NAME);
-        String fileModular_Content = readContentFromFile(fileModular, moscFileName);
-
-        String fileModular_ModifiedContent = replaceManeuverGroupTags(fileModular_Content, moscFileName, fileModular.getName());
-
-        writeContentToFileResult(new File(resultingFileName), fileModular_ModifiedContent);
-
-        printConversionSuccessLog(fileModular, resultingFileName);
-
-        Runtime.getRuntime().addShutdownHook(new Thread(Modular2Simple::deleteTemporaryExtractionPath));
-    }
-
-    // helper methods
-
-    private static void packageXoscIntoMosc(String[] args) {
-        String[] xoscFileNames = Arrays.copyOfRange(args, 1, args.length - 1);
-        String moscFileName = args[args.length - 1];
-
-        try (ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(moscFileName))) {
-            for (String xoscFileName : xoscFileNames) {
-                checkIfFileExists(xoscFileName);
-                File xoscFile = new File(xoscFileName);
-
-                zipOutputStream.putNextEntry(new ZipEntry(xoscFile.getName()));
-                try (FileInputStream fileInputStream = new FileInputStream(xoscFile)) {
-                    byte[] buffer = new byte[1024];
-                    int bytesRead;
-                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-                        zipOutputStream.write(buffer, 0, bytesRead);
-                    }
-                }
-                zipOutputStream.closeEntry();
-            }
-            LOGGER.info("Files %s packaged into '%s'".formatted(Arrays.toString(xoscFileNames), moscFileName));
-        } catch (IOException e) {
-            handleExceptionShutdown("Error packaging XOSC files into MOSC", e);
         }
     }
 
@@ -233,8 +235,6 @@ public class Modular2Simple {
                     simpleScenarioFileName = convertRecursiveModularToSimple(simpleScenarioFileName, fileModularPathAndName);
                 }
                 if (simpleScenarioFileName.endsWith(SIMPLE_FILE_EXTENSION)) {
-                    processedMoscFiles.clear();
-
                     LOGGER.fine("--- Handling simple scenario: '%s'".formatted(simpleScenarioFileName));
 
                     NodeList simpleManeuverGroupNodeList = extractManeuverGroupNodesFromSimpleScenario(simpleScenarioFileName, fileModularPathAndName);
@@ -361,6 +361,14 @@ public class Modular2Simple {
             handleExceptionShutdown("Circular references detected in the following files:" + "\n" + String.join("\n", processedMoscFiles));
         } else {
             processedMoscFiles.add(fileNameAndPath);
+        }
+    }
+
+    private static void removeCurrentMoscFileFromProcessedMoscFiles(String moscFileName) {
+        if (!processedMoscFiles.isEmpty()) {
+            String lastEntry = processedMoscFiles.get(processedMoscFiles.size() - 1);
+            if (lastEntry.equals(moscFileName))
+                processedMoscFiles.remove(processedMoscFiles.size() - 1);
         }
     }
 
