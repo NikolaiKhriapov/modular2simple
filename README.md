@@ -70,4 +70,4 @@ To set the environment variable:
 Documentation
 ---------------------------
 For more details or if you run into problems, check our
-[Documentation](http://link-to-documentation). <-- (insert link to documentation) 
+[Documentation](https://github.com/NikolaiKhriapov/modular2simple/tree/main/Docs) 
