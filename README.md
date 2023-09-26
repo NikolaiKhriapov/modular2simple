@@ -51,7 +51,7 @@ Example
 
 This command will convert the 'modular.mosc' file into a scenario file named 'resulting_complex.xosc'.
 
-Scenario Library
+Environment Variable
 ---------------------------
 
 If you want to use scenarios from different folders, it is necessary to set an environment variable so that
