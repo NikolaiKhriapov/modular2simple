@@ -4,7 +4,7 @@ Modular2Simple is a tool designed to enhance scenario creation for the CARLA sim
 existing simple scenarios in the OpenSCENARIO format (.xosc). This tool allows to package a main scenario file
 along with the simple scenario files it references into a .mosc file (Modular Open Scenario). It not only
 works with simple scenarios (.xosc) but also has the capability to generate modular scenarios from existing modular
-scenarios, allowing for generating even more complex modular scenarios. Once the .mosc file is ready, Modular2Simple 
+scenarios, allowing for generating even more complex modular scenarios. Once the .mosc file is ready, Modular2Simple
 allows to convert the resulting modular scenario (.mosc) file into standard OpenSCENARIO (.xosc) file (that contains
 all the necessary data from the simple scenario files), which makes it fully compatible with the ScenarioRunner module
 of the CARLA simulator.
@@ -19,6 +19,7 @@ file: [Modular2Simple](https://github.com/NikolaiKhriapov/modular2simple/blob/ma
 Navigate to the downloaded file directory.
 
 Compile the program
+
 * javac Modular2Simple.java
 
 Using the Modular2Simple
@@ -28,10 +29,11 @@ Using the Modular2Simple
 
 * java Modular2Simple --convert-xosc-to-mosc <input_xosc_(mosc)_files> <output_mosc_file>
 
-Replace <input_xosc_(mosc)_files> with the path to input .xosc (.mosc) files (the main scenario file must be named 
+Replace <input_xosc_(mosc)_files> with the path to input .xosc (.mosc) files (the main scenario file must be named
 'main.xosc'), and <output_mosc_file> with the desired path for the output modular scenario file.
 
 Example
+
 * java Modular2Simple --convert-xosc-to-mosc main.xosc simple_1.xosc simple_2.xosc modular.mosc
 
 This command will package the 'main.xosc', 'simple_1.xosc' and 'simple_2.xosc' files into the 'modular.mosc' file.
@@ -44,23 +46,26 @@ Replace <input_mosc_file> with the path to the input modular package file, and <
 for the output complex scenario file.
 
 Example
+
 * java Modular2Simple --convert-mosc-to-xosc modular.mosc resulting_complex.xosc
 
 This command will convert the 'modular.mosc' file into a scenario file named 'resulting_complex.xosc'.
 
-#### Scenario Library
+Scenario Library
+---------------------------
 
-If you want to use scenarios from different folders, it is necessary to set an environment variable so that Modular2Simple
-can find the library folders. This allows users to choose different location of scenario files, if they are not found
-within the .mosc archive. If no environment variable is specified, then Modular2Simple will search for scenarios only 
-within the .mosc archive.
+If you want to use scenarios from different folders, it is necessary to set an environment variable so that
+Modular2Simple can find the library folders. This allows users to choose different locations of scenario files, if they
+are not found within the .mosc archive. If no environment variable is specified, then Modular2Simple will search for
+scenarios only within the .mosc archive.
 
 To set the environment variable:
-1. Open Windows Control Panel and go to 'Advanced System Settings' or search for 'Advanced System Settings' in the Windows search bar.
+
+1. Open Windows Control Panel and go to 'Advanced System Settings' or search for 'Advanced System Settings' in the
+   Windows search bar.
 2. On the 'Advanced' panel open 'Environment Variables...'.
 3. Click 'New...' to create the variable.
 4. Name the variable 'SCENARIO_PATH' and choose the path to the desired folder with scenarios.
-
 
 Documentation
 ---------------------------
