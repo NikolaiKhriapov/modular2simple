@@ -35,7 +35,7 @@ public class Modular2Simple {
     private static final String MODULAR_FILE_EXTENSION = ".mosc";
     private static final String SIMPLE_FILE_EXTENSION = ".xosc";
     private static final String MAIN_FILE_NAME = "main" + SIMPLE_FILE_EXTENSION;
-    private static final String SIMPLE_SCENARIO_PATH_ENV_VAR = "SIMPLE_SCENARIO_PATH";
+    private static final String SIMPLE_SCENARIO_PATH_ENV_VAR = "SCENARIO_PATH";
     private static final String EXTRACTION_PATH = "tmp/";
     private static final String CHANGEABLE_ATTRIBUTES_KEY = "parameterAttributes";
     private static final Logger LOGGER = Logger.getLogger(Modular2Simple.class.getName());
@@ -547,7 +547,7 @@ public class Modular2Simple {
 }
 
 //// introduce and check new environment variable
-// export SIMPLE_SCENARIO_PATH="/Users/Nikolai/Desktop/ScenarioLibrary"
+// export SCENARIO_PATH="/Users/Nikolai/Desktop/ScenarioLibrary"
 // printenv
 
 //// run the program

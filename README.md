@@ -48,6 +48,20 @@ Example
 
 This command will convert the 'modular.mosc' file into a scenario file named 'resulting_complex.xosc'.
 
+#### Scenario Library
+
+If you want to use scenarios from different folders, it is necessary to set an environment variable so that Modular2Simple
+can find the library folders. This allows users to choose different location of scenario files, if they are not found
+within the .mosc archive. If no environment variable is specified, then Modular2Simple will search for scenarios only 
+within the .mosc archive.
+
+To set the environment variable:
+1. Open Windows Control Panel and go to 'Advanced System Settings' or search for 'Advanced System Settings' in the Windows search bar.
+2. On the 'Advanced' panel open 'Environment Variables...'.
+3. Click 'New...' to create the variable.
+4. Name the variable 'SCENARIO_PATH' and choose the path to the desired folder with scenarios.
+
+
 Documentation
 ---------------------------
 For more details or if you run into problems, check our
