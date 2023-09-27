@@ -112,7 +112,7 @@
     </Init>
     <Story name="MyStory">
       <Act name="Behavior">
-
+        
         <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
           <Actors selectTriggeringEntities="false">
             <EntityRef entityRef="vehicle_0"/>
