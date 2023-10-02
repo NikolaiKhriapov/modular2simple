@@ -310,7 +310,6 @@
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
                     </ScenarioReference>
                 </ManeuverGroup>
-
                 <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario1">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_1"/>

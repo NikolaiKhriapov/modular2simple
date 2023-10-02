@@ -244,6 +244,8 @@ public class Modular2Simple {
                         for (int i = 0; i < simpleManeuverGroupNodeList.getLength(); i++) {
                             replaceEntityRef(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i));
 
+                            replaceManeuverGroupName(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i), i);
+
                             replaceParameterRefs(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i));
 
                             listOfSimpleManeuverGroupNodes.add(simpleManeuverGroupNodeList.item(i));
@@ -378,6 +380,14 @@ public class Modular2Simple {
 
         Node simpleEntityRefNode = ((Element) simpleManeuverGroupNode).getElementsByTagName("EntityRef").item(0);
         simpleEntityRefNode.getAttributes().getNamedItem("entityRef").setNodeValue(entityRef);
+    }
+
+    private static void replaceManeuverGroupName(Node modularManeuverGroupNode, Node simpleManeuverGroupNode, int orderNumber) {
+        String entityRef = modularManeuverGroupNode.getAttributes().getNamedItem("name").getNodeValue();
+
+        String postfix = (orderNumber == 0) ? "" : "_" + (orderNumber + 1);
+
+        simpleManeuverGroupNode.getAttributes().getNamedItem("name").setNodeValue(entityRef + postfix);
     }
 
     private static void replaceParameterRefs(Node modularManeuverGroupNode, Node simpleManeuverGroupNode) {
