@@ -35,6 +35,7 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
+
         <ScenarioObject name="vehicle_0">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
@@ -49,7 +50,7 @@
                 </Axles>
                 <Properties>
                     <Property name="type" value="simulation"/>
-                    <Property name="color" value="150,0,0"/>
+                    <Property name="color" value="255,0,0"/>
                 </Properties>
             </Vehicle>
         </ScenarioObject>
@@ -103,10 +104,11 @@
                 </Axles>
                 <Properties>
                     <Property name="type" value="simulation"/>
-                    <Property name="color" value="255,0,0"/>
+                    <Property name="color" value="150,0,0"/>
                 </Properties>
             </Vehicle>
         </ScenarioObject>
+
         <ScenarioObject name="vehicle_8">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
@@ -179,6 +181,99 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
+
+        <ScenarioObject name="trafficcone_23">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_24">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_25">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+
+        <ScenarioObject name="trafficcone_27">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_28">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_29">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+
+        <ScenarioObject name="trafficcone_31">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_32">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
+        <ScenarioObject name="trafficcone_33">
+            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="0.0" y="0.0" z="0.0"/>
+                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                </BoundingBox>
+                <Properties/>
+            </MiscObject>
+        </ScenarioObject>
     </Entities>
 
     <Storyboard>
@@ -225,6 +320,7 @@
                         </ControllerAction>
                     </PrivateAction>
                 </Private>
+
                 <Private entityRef="vehicle_0">
                     <PrivateAction>
                         <TeleportAction>
@@ -261,6 +357,7 @@
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
+
                 <Private entityRef="vehicle_8">
                     <PrivateAction>
                         <TeleportAction>
@@ -293,6 +390,90 @@
                         <TeleportAction>
                             <Position>
                                 <WorldPosition x="-128" y="-49" z="0" h="1.64"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+
+                <Private entityRef="trafficcone_23">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-128" y="12" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_24">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-122" y="12" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_25">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-118" y="12" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+
+                <Private entityRef="trafficcone_27">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-128" y="-8" z="0" h="1.64"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_28">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-128" y="-3" z="0" h="1.64"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_29">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-128" y="2" z="0" h="1.64"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+
+                <Private entityRef="trafficcone_31">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-128" y="-18" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_32">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-122" y="-18" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="trafficcone_33">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-118" y="-18" z="0" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -365,6 +546,81 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_3.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone23_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_23"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone24_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_24"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone25_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_25"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone27_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_27"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone28_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_28"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone29_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_29"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone31_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_31"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone32_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_32"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone33_SimpleScenario5">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="trafficcone_33"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_5.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="20"/>
                     </ScenarioReference>
                 </ManeuverGroup>
 
