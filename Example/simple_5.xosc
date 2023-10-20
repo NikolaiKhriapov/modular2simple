@@ -114,7 +114,7 @@
                         <Event name="SetInitSpeed" priority="overwrite">
                             <Action name="Appear">
                                 <GlobalAction>
-                                    <EntityAction entityRef="trafficcone_0">
+                                    <EntityAction parameterAttributes="entityRef" entityRef="trafficcone_0">
                                         <AddEntityAction>
                                             <Position>
                                                 <WorldPosition x="-128" y="12" z="0" h="3.14"/>
