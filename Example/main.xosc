@@ -329,6 +329,17 @@
             </Vehicle>
         </ScenarioObject>
 
+        <ScenarioObject name="pedestrian_22">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
+        </ScenarioObject>
         <ScenarioObject name="trafficcone_23">
             <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
                 <ParameterDeclarations/>
@@ -360,6 +371,18 @@
             </MiscObject>
         </ScenarioObject>
 
+        <ScenarioObject name="pedestrian_26">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
+        </ScenarioObject>
         <ScenarioObject name="trafficcone_27">
             <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
                 <ParameterDeclarations/>
@@ -391,6 +414,18 @@
             </MiscObject>
         </ScenarioObject>
 
+        <ScenarioObject name="pedestrian_30">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
+        </ScenarioObject>
         <ScenarioObject name="trafficcone_31">
             <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
                 <ParameterDeclarations/>
@@ -421,6 +456,32 @@
                 <Properties/>
             </MiscObject>
         </ScenarioObject>
+
+        <ScenarioObject name="pedestrian_34">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
+        </ScenarioObject>
+        <ScenarioObject name="pedestrian_35">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+                <ParameterDeclarations/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
+        </ScenarioObject>
+
     </Entities>
 
     <Storyboard>
@@ -616,11 +677,20 @@
                     </PrivateAction>
                 </Private>
 
+                <Private entityRef="pedestrian_22">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-125" y="13" z="-500" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
                 <Private entityRef="trafficcone_23">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="12" z="0" h="3.14"/>
+                                <WorldPosition x="-128" y="12" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -629,7 +699,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-122" y="12" z="0" h="3.14"/>
+                                <WorldPosition x="-122" y="12" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -638,17 +708,26 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-118" y="12" z="0" h="3.14"/>
+                                <WorldPosition x="-118" y="12" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
 
+                <Private entityRef="pedestrian_26">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-135" y="-7" z="-500" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
                 <Private entityRef="trafficcone_27">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="-8" z="0" h="1.64"/>
+                                <WorldPosition x="-128" y="-8" z="-500" h="1.67"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -657,7 +736,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="-3" z="0" h="1.64"/>
+                                <WorldPosition x="-128" y="-3" z="-500" h="1.67"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -666,17 +745,26 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="2" z="0" h="1.64"/>
+                                <WorldPosition x="-128" y="2" z="-500" h="1.67"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
 
+                <Private entityRef="pedestrian_30">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-129" y="-16" z="-500" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
                 <Private entityRef="trafficcone_31">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="-18" z="0" h="3.14"/>
+                                <WorldPosition x="-128" y="-18" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -685,7 +773,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-122" y="-18" z="0" h="3.14"/>
+                                <WorldPosition x="-122" y="-18" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -694,7 +782,26 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-118" y="-18" z="0" h="3.14"/>
+                                <WorldPosition x="-118" y="-18" z="-500" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+
+                <Private entityRef="pedestrian_34">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-107" y="-4" z="-500" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="pedestrian_35">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-107" y="-1" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -836,12 +943,28 @@
                     </ScenarioReference>
                 </ManeuverGroup>
 
+                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian22_SimpleScenario4">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="pedestrian_22"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_4.xosc">
+                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_22"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-125"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="13"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone23_SimpleScenario5">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="trafficcone_23"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_23"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone24_SimpleScenario5">
@@ -850,6 +973,10 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_24"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-122"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone25_SimpleScenario5">
@@ -858,15 +985,35 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_25"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-118"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
 
+                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian26_SimpleScenario4">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="pedestrian_26"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_4.xosc">
+                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_26"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-135"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-7"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone27_SimpleScenario5">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="trafficcone_27"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_27"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-8"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone28_SimpleScenario5">
@@ -875,6 +1022,10 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_28"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-3"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone29_SimpleScenario5">
@@ -883,15 +1034,35 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_29"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="2"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>
                     </ScenarioReference>
                 </ManeuverGroup>
 
+                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian30_SimpleScenario4">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="pedestrian_30"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_4.xosc">
+                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_30"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-129"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-16"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone31_SimpleScenario5">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="trafficcone_31"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_31"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone32_SimpleScenario5">
@@ -900,6 +1071,10 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_32"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-122"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
                 <ManeuverGroup maximumExecutionCount="1" name="TrafficCone33_SimpleScenario5">
@@ -908,6 +1083,35 @@
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_5.xosc">
                         <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_33"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-118"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian34_SimpleScenario4">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="pedestrian_34"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_4.xosc">
+                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_34"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-107"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-4"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian35_SimpleScenario4">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="pedestrian_35"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_4.xosc">
+                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_35"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-107"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-1"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
 

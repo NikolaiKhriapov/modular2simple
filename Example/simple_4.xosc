@@ -36,15 +36,17 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="trafficcone_0">
-            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
-                <ParameterDeclarations/>
+        <ScenarioObject name="pedestrian_0">
+            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
                 <BoundingBox>
-                    <Center x="0.0" y="0.0" z="0.0"/>
-                    <Dimensions width="0.0" length="0.0" height="0.0"/>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
                 </BoundingBox>
-                <Properties/>
-            </MiscObject>
+
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                </Properties>
+            </Pedestrian>
         </ScenarioObject>
     </Entities>
 
@@ -92,11 +94,11 @@
                         </ControllerAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="trafficcone_0">
+                <Private entityRef="pedestrian_0">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="12" z="-500" h="3.14"/>
+                                <WorldPosition x="-125" y="13" z="-500" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -108,16 +110,16 @@
 
                 <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="trafficcone_0"/>
+                        <EntityRef entityRef="pedestrian_0"/>
                     </Actors>
                     <Maneuver name="Maneuver1">
                         <Event name="SetInitSpeed" priority="overwrite">
                             <Action name="Appear">
                                 <GlobalAction>
-                                    <EntityAction parameterAttributes="entityRef" entityRef="trafficcone_0">
+                                    <EntityAction parameterAttributes="entityRef" entityRef="pedestrian_0">
                                         <AddEntityAction>
                                             <Position>
-                                                <WorldPosition parameterAttributes="x,y,z,h" x="-128" y="12" z="0" h="3.14"/>
+                                                <WorldPosition parameterAttributes="x,y,z,h" x="-125" y="13" z="0" h="3.14"/>
                                             </Position>
                                         </AddEntityAction>
                                     </EntityAction>
