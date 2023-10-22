@@ -256,6 +256,79 @@
             </Vehicle>
         </ScenarioObject>
 
+        <ScenarioObject name="vehicle_12">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0, 150, 0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_13">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0, 150, 0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_14">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0, 150, 0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_15">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0, 150, 0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+
         <ScenarioObject name="trafficcone_23">
             <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">
                 <ParameterDeclarations/>
@@ -473,7 +546,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-132" y="-56.5" z="0" h="1.64"/>
+                                <WorldPosition x="-125" y="48.5" z="0" h="-1.57"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -482,7 +555,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="-56.5" z="0" h="1.64"/>
+                                <WorldPosition x="-121" y="48.5" z="0" h="-1.57"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -491,7 +564,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-132" y="-49" z="0" h="1.64"/>
+                                <WorldPosition x="-125" y="56" z="0" h="-1.57"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -500,7 +573,44 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-128" y="-49" z="0" h="1.64"/>
+                                <WorldPosition x="-121" y="56" z="0" h="-1.57"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+
+                <Private entityRef="vehicle_12">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-127.7" y="-44" z="0" h="1.57"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_13">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-132" y="-44" z="0" h="1.57"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_14">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-132" y="-51" z="0" h="1.57"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_15">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-127.7" y="-51" z="0" h="1.57"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -687,6 +797,39 @@
                 <ManeuverGroup maximumExecutionCount="1" name="Vehicle11_SimpleScenario3">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_11"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle12_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_12"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle13_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_13"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle14_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_14"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle15_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_15"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_3.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
