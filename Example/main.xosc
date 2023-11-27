@@ -329,6 +329,115 @@
             </Vehicle>
         </ScenarioObject>
 
+        <ScenarioObject name="police_16">
+            <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+        <ScenarioObject name="police_17">
+            <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+        <ScenarioObject name="police_18">
+            <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+        <ScenarioObject name="ambulance_19">
+            <Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">  <!--Vehicle name="vehicle.ford.ambulance" vehicleCategory="car"-->
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+        <ScenarioObject name="ambulance_20">
+            <Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">  <!--Vehicle name="vehicle.ford.ambulance" vehicleCategory="car"-->
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+        <ScenarioObject name="firetruck_21">
+            <Vehicle name="vehicle.carlamotors.carlacola" vehicleCategory="car">  <!--Vehicle name="vehicle.carlamotors.firetruck" vehicleCategory="car"-->
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject><!-- not tested -->
+
         <ScenarioObject name="pedestrian_22">
             <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
                 <BoundingBox>
@@ -481,7 +590,6 @@
                 </Properties>
             </Pedestrian>
         </ScenarioObject>
-
     </Entities>
 
     <Storyboard>
@@ -500,6 +608,7 @@
                         </Environment>
                     </EnvironmentAction>
                 </GlobalAction>
+
                 <Private entityRef="hero">
                     <PrivateAction>
                         <TeleportAction>
@@ -677,6 +786,61 @@
                     </PrivateAction>
                 </Private>
 
+                <Private entityRef="police_16">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-29" y="-24.25" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+                <Private entityRef="police_17">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-29" y="-27" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+                <Private entityRef="police_18">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-29" y="-29.75" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+                <Private entityRef="ambulance_19">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-29" y="-29.75" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+                <Private entityRef="ambulance_20">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-29" y="-35.25" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+                <Private entityRef="firetruck_21">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-22" y="-27" z="1" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private><!-- not tested -->
+
                 <Private entityRef="pedestrian_22">
                     <PrivateAction>
                         <TeleportAction>
@@ -810,7 +974,6 @@
         </Init>
         <Story name="MyStory">
             <Act name="Behavior">
-
                 <ManeuverGroup maximumExecutionCount="1" name="Vehicle0_SimpleScenario1">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_0"/>
@@ -942,6 +1105,55 @@
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
                     </ScenarioReference>
                 </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="Police16_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="police_16"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
+                <ManeuverGroup maximumExecutionCount="1" name="Police17_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="police_17"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
+                <ManeuverGroup maximumExecutionCount="1" name="Police18_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="police_18"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
+                <ManeuverGroup maximumExecutionCount="1" name="Ambulance19_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="ambulance_19"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
+                <ManeuverGroup maximumExecutionCount="1" name="Ambulance20_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="ambulance_20"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
+                <ManeuverGroup maximumExecutionCount="1" name="Firetruck21_SimpleScenario2">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="firetruck_21"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                    </ScenarioReference>
+                </ManeuverGroup><!-- not tested -->
 
                 <ManeuverGroup maximumExecutionCount="1" name="Pedestrian22_SimpleScenario4">
                     <Actors selectTriggeringEntities="false">

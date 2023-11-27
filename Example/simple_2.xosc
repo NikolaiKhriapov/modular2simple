@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSCENARIO>
 
-    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:SimpleScenario4"
-                author="Nikolai Khriapov"/>
+    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:SimpleScenario2" author="Taha Drif"/>
 
     <ParameterDeclarations/>
 
@@ -36,17 +35,23 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="pedestrian_0">
-            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">
+        <ScenarioObject name="vehicle_0">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
                 <BoundingBox>
                     <Center x="1.5" y="0.0" z="0.9"/>
                     <Dimensions width="2.1" length="4.5" height="1.8"/>
                 </BoundingBox>
-
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
                 <Properties>
                     <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
                 </Properties>
-            </Pedestrian>
+            </Vehicle>
         </ScenarioObject>
     </Entities>
 
@@ -94,11 +99,11 @@
                         </ControllerAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="pedestrian_0">
+                <Private entityRef="vehicle_0">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-125" y="13" z="-500" h="3.14"/>
+                                <WorldPosition x="-29" y="-24.25" z="1" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -110,30 +115,32 @@
 
                 <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="pedestrian_0"/>
+                        <EntityRef entityRef="vehicle_0"/>
                     </Actors>
                     <Maneuver name="Maneuver1">
                         <Event name="SetInitSpeed" priority="overwrite">
-                            <Action name="Appear">
-                                <GlobalAction>
-                                    <EntityAction parameterAttributes="entityRef" entityRef="pedestrian_0">
-                                        <AddEntityAction>
-                                            <Position>
-                                                <WorldPosition parameterAttributes="x,y,z,h" x="-125" y="13" z="0" h="3.14"/>
-                                            </Position>
-                                        </AddEntityAction>
-                                    </EntityAction>
-                                </GlobalAction>
+                            <Action name="SetInitSpeed">
+                                <PrivateAction>
+                                    <LongitudinalAction>
+                                        <SpeedAction>
+                                            <SpeedActionDynamics dynamicsShape="step" value="10000" dynamicsDimension="distance"/>
+                                            <SpeedActionTarget>
+                                                <AbsoluteTargetSpeed value="10"/>
+                                                <!--<AbsoluteTargetSpeed parameterAttributes="AbsoluteTargetSpeed.value" value="10"/> -->
+                                            </SpeedActionTarget>
+                                        </SpeedAction>
+                                    </LongitudinalAction>
+                                </PrivateAction>
                             </Action>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition name="DelayUntilAppeared" delay="10.0" conditionEdge="rising">
+                                    <Condition name="StartConditionSetInitSpeed" delay="3.5" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef entityRef="hero"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
-                                                <TraveledDistanceCondition value="1.0"/>
+                                                <StandStillCondition duration="2.0"/>
                                             </EntityCondition>
                                         </ByEntityCondition>
                                     </Condition>
@@ -170,7 +177,7 @@
                                     <EntityRef entityRef="hero"/>
                                 </TriggeringEntities>
                                 <EntityCondition>
-                                    <TraveledDistanceCondition value="20000.0"/>
+                                    <TraveledDistanceCondition value="200.0"/>
                                 </EntityCondition>
                             </ByEntityCondition>
                         </Condition>
