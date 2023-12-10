@@ -36,7 +36,7 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="vehicle_0">
+        <ScenarioObject name="vehicle">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
@@ -100,7 +100,7 @@
                         </ControllerAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="vehicle_0">
+                <Private entityRef="vehicle">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
@@ -116,7 +116,7 @@
 
                 <ManeuverGroup name="CollisionInit" maximumExecutionCount="1">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="vehicle_0"/>
+                        <EntityRef entityRef="vehicle"/>
                     </Actors>
                     <Maneuver name="CollisionInit">
                         <Event name="SetInitSpeed" priority="overwrite">
@@ -166,7 +166,7 @@
                                     <Condition name="SetRouteStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <TraveledDistanceCondition value="1.0"/>
@@ -194,7 +194,7 @@
                                     <Condition name="StopVehicleStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <ReachPositionCondition tolerance="5">
@@ -215,7 +215,7 @@
                                     <Condition name="TimeOutAfterCollisionStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <StandStillCondition duration="10.0"/>

@@ -194,129 +194,117 @@
         </Init>
         <Story name="MyStory">
             <Act name="Behavior">
-                <ManeuverGroup maximumExecutionCount="1" name="Vehicle0_SimpleScenario1">
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle0">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_0"/>
                     </Actors>
-                    <ScenarioReference scenarioFileName="simple_1.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
-                        <ParameterReference key="Condition.delay" value="0.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
-                        <ParameterReference key="entityRef" value="vehicle_0"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                    <ScenarioReference scenarioFileName="modular_1.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
                     </ScenarioReference>
                 </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario1">
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_1"/>
                     </Actors>
-                    <ScenarioReference scenarioFileName="simple_1.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="Condition.delay" value="0.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-20"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
-                        <ParameterReference key="entityRef" value="vehicle_1"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="1"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="4.71"/>
-                    </ScenarioReference>
-                </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Police_SimpleScenario2">
-                    <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="police"/>
-                    </Actors>
-                    <ScenarioReference scenarioFileName="simple_2.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="entityRef" value="vehicle_0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-103"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
-                        <ParameterReference key="EntityCondition.StandStillCondition.duration" value="3.0"/>
-                    </ScenarioReference>
-                </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Ambulance_SimpleScenario2">
-                    <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="ambulance"/>
-                    </Actors>
-                    <ScenarioReference scenarioFileName="simple_2.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="entityRef" value="vehicle_0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-103"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
-                        <ParameterReference key="EntityCondition.StandStillCondition.duration" value="10.0"/>
+                    <ScenarioReference scenarioFileName="modular_1.xosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-20"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
+                            <ParameterReference key="entityRef" value="vehicle_1"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="1"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="4.71"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="6.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-1000"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
+                        </ManeuverGroupReference>
                     </ScenarioReference>
                 </ManeuverGroup>
 
-                <ManeuverGroup maximumExecutionCount="1" name="Vehicle0_SimpleScenario3">
-                    <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="vehicle_0"/>
-                    </Actors>
-                    <ScenarioReference scenarioFileName="simple_3.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="Condition.delay" value="15.0"/>
-                        <ParameterReference key="entityRef" value="police"/>
-                        <ParameterReference key="StandStillCondition.duration" value="3.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
-                    </ScenarioReference>
-                </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario3">
-                    <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="vehicle_1"/>
-                    </Actors>
-                    <ScenarioReference scenarioFileName="simple_3.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="Condition.delay" value="15.0"/>
-                        <ParameterReference key="entityRef" value="police"/>
-                        <ParameterReference key="StandStillCondition.duration" value="6.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-1000"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
-                    </ScenarioReference>
-                </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Police_SimpleScenario3">
+                <ManeuverGroup maximumExecutionCount="1" name="Police">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="police"/>
                     </Actors>
-                    <ScenarioReference scenarioFileName="simple_3.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="Condition.delay" value="15.0"/>
-                        <ParameterReference key="entityRef" value="police"/>
-                        <ParameterReference key="StandStillCondition.duration" value="15.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-350"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                    <ScenarioReference scenarioFileName="modular_2.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleArrivingToAccidentSite.ArrivingToAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-103"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="EntityCondition.StandStillCondition.duration" value="3.0"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeavingTheAccidentSite.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="15.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-350"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
                     </ScenarioReference>
                 </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Ambulance_SimpleScenario3">
+                <ManeuverGroup maximumExecutionCount="1" name="Ambulance">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="ambulance"/>
                     </Actors>
-                    <ScenarioReference scenarioFileName="simple_3.xosc">
-                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
-                        <ParameterReference key="Condition.delay" value="15.0"/>
-                        <ParameterReference key="entityRef" value="police"/>
-                        <ParameterReference key="StandStillCondition.duration" value="10.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                    <ScenarioReference scenarioFileName="modular_2.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleArrivingToAccidentSite.ArrivingToAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-103"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="EntityCondition.StandStillCondition.duration" value="10.0"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeavingTheAccidentSite.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="10.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
                     </ScenarioReference>
                 </ManeuverGroup>
 

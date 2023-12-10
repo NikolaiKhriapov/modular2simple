@@ -36,7 +36,7 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="vehicle_0">
+        <ScenarioObject name="vehicle">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
@@ -100,7 +100,7 @@
                         </ControllerAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="vehicle_0">
+                <Private entityRef="vehicle">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
@@ -116,7 +116,7 @@
 
                 <ManeuverGroup name="LeavingTheAccidentSite" maximumExecutionCount="1">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="vehicle_0"/>
+                        <EntityRef entityRef="vehicle"/>
                     </Actors>
                     <Maneuver name="LeavingTheAccidentSite">
                         <Event name="SetLeavingSpeed" priority="overwrite">
@@ -135,7 +135,7 @@
                             </Action>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition conditionEdge="rising" delay="0.0" name="StartConditionSetLeavingSpeed">
+                                    <Condition conditionEdge="rising" delay="0.0" name="SetLeavingSpeedStartCondition1">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef parameterAttributes="entityRef" entityRef="hero"/>
@@ -146,7 +146,7 @@
                                         </ByEntityCondition>
                                     </Condition>
                                     <Condition parameterAttributes="delay" conditionEdge="rising" delay="15.0"
-                                               name="SetLeavingSpeedStartCondition">
+                                               name="SetLeavingSpeedStartCondition2">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef parameterAttributes="entityRef" entityRef="hero"/>
@@ -176,7 +176,7 @@
                                     <Condition name="SetLeavingRouteStartCondition1" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <TraveledDistanceCondition value="30.0"/>
@@ -186,7 +186,7 @@
                                     <Condition name="SetLeavingRouteStartCondition2" delay="15.0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <StandStillCondition parameterAttributes="duration" duration="3.0"/>
@@ -203,7 +203,7 @@
                                     <Condition name="TimeOutAfterLeavingStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
                                             </TriggeringEntities>
                                             <EntityCondition>
                                                 <StandStillCondition duration="10.0"/>

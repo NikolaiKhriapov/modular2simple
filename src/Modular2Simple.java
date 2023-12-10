@@ -49,7 +49,10 @@ public class Modular2Simple {
         switch (args[0]) {
             case COMMAND_HELP_FULL, COMMAND_HELP_SHORT -> printHelp();
             case COMMAND_XOSC_TO_MOSC_FULL, COMMAND_XOSC_TO_MOSC_SHORT -> packageXoscIntoMosc(args);
-            case COMMAND_MOSC_TO_XOSC_FULL, COMMAND_MOSC_TO_XOSC_SHORT -> convertMoscToXosc(args);
+            case COMMAND_MOSC_TO_XOSC_FULL, COMMAND_MOSC_TO_XOSC_SHORT -> {
+                convertMoscToXosc(args);
+                removeAllParameterAttributesAttributes(args);
+            }
             default -> System.out.println("No such option: " + args[0] + ". Use --help to see available options.");
         }
     }
@@ -118,17 +121,44 @@ public class Modular2Simple {
         Runtime.getRuntime().addShutdownHook(new Thread(Modular2Simple::deleteTemporaryExtractionPath));
     }
 
+    private static void removeAllParameterAttributesAttributes(String[] args) {
+        try {
+            File resultingFile = new File(args[2]);
+
+
+            String fileModularContent = readContentFromFile(resultingFile, null);
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            InputSource modularInputSource = new InputSource(new StringReader(fileModularContent));
+            Document modularDocument = builder.parse(modularInputSource);
+
+            NodeList allElements = modularDocument.getElementsByTagName("*");
+            for (int i = 0; i < allElements.getLength(); i++) {
+                Node node = allElements.item(i);
+                if (node instanceof Element element) {
+                    element.removeAttribute("parameterAttributes");
+                }
+            }
+
+            writeContentToFileResult(resultingFile, nodeToString(modularDocument.getDocumentElement(), false));
+
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            handleExceptionShutdown("An error occurred while processing XML content.", e);
+        }
+    }
+
     // helper methods
 
     private static void checkCommandLineArguments(String[] args) {
         switch (args[0]) {
             case COMMAND_XOSC_TO_MOSC_FULL, COMMAND_XOSC_TO_MOSC_SHORT -> {
-                for (int i = 1; i < args.length - 1; i++) {
-                    if (!args[i].endsWith(SIMPLE_FILE_EXTENSION)) {
-                        handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_files> <output_%s_file>"
-                                .formatted(args[0], SIMPLE_FILE_EXTENSION.replace(".", ""), MODULAR_FILE_EXTENSION.replace(".", "")));
-                    }
-                }
+//                for (int i = 1; i < args.length - 1; i++) {
+//                    if (!args[i].endsWith(SIMPLE_FILE_EXTENSION)) {
+//                        handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_files> <output_%s_file>"
+//                                .formatted(args[0], SIMPLE_FILE_EXTENSION.replace(".", ""), MODULAR_FILE_EXTENSION.replace(".", "")));
+//                    }
+//                }
                 if (!args[args.length - 1].endsWith(MODULAR_FILE_EXTENSION)) {
                     handleExceptionShutdown("Invalid command-line arguments. Expected: java Modular2Simple %s <input_%s_files> <output_%s_file>"
                             .formatted(args[0], SIMPLE_FILE_EXTENSION.replace(".", ""), MODULAR_FILE_EXTENSION.replace(".", "")));
@@ -185,7 +215,7 @@ public class Modular2Simple {
     }
 
     private static String readContentFromFile(File file, String parentFileName) {
-        if (!file.exists()) {
+        if (!file.exists() && parentFileName != null) {
             handleExceptionShutdown("File '%s' must contain main scenario file '%s'".formatted(parentFileName, file.getName()));
         }
 
@@ -218,11 +248,11 @@ public class Modular2Simple {
             InputSource modularInputSource = new InputSource(new StringReader(fileModularContent));
             Document modularDocument = builder.parse(modularInputSource);
 
-            NodeList modularNodeList = modularDocument.getElementsByTagName("ScenarioReference");
+            NodeList scenarioReferenceNodeList = modularDocument.getElementsByTagName("ScenarioReference");
 
             List<Node> modularScenarioReferenceNodes = new ArrayList<>();
-            for (int i = 0; i < modularNodeList.getLength(); i++) {
-                modularScenarioReferenceNodes.add(modularNodeList.item(i));
+            for (int i = 0; i < scenarioReferenceNodeList.getLength(); i++) {
+                modularScenarioReferenceNodes.add(scenarioReferenceNodeList.item(i));
             }
 
             for (Node modularScenarioReferenceNode : modularScenarioReferenceNodes) {
@@ -237,7 +267,7 @@ public class Modular2Simple {
                 if (simpleScenarioFileName.endsWith(SIMPLE_FILE_EXTENSION)) {
                     LOGGER.fine("--- Handling simple scenario: '%s'".formatted(simpleScenarioFileName));
 
-                    NodeList maneuverGroupReferenceNodeList = ((Element) modularManeuverGroupNode).getElementsByTagName("ManeuverGroupReference");
+                    NodeList maneuverGroupReferenceNodeList = ((Element) modularScenarioReferenceNode).getElementsByTagName("ManeuverGroupReference");
                     List<Node> listOfSimpleManeuverGroupNodes = new ArrayList<>();
                     for (int mgr = 0; mgr < maneuverGroupReferenceNodeList.getLength(); mgr++) {
                         String simpleScenarioManeuverGroupName = maneuverGroupReferenceNodeList.item(mgr).getAttributes().getNamedItem("maneuverGroupName").getNodeValue();
@@ -249,7 +279,7 @@ public class Modular2Simple {
 
                             replaceManeuverGroupName(modularManeuverGroupNode, simpleManeuverGroupNode);
 
-                            replaceParameterRefs(modularManeuverGroupNode, simpleManeuverGroupNode);
+                            replaceParameterRefs(modularManeuverGroupNode, simpleManeuverGroupNode, simpleScenarioManeuverGroupName);
 
                             listOfSimpleManeuverGroupNodes.add(simpleManeuverGroupNode);
                         }
@@ -361,7 +391,9 @@ public class Modular2Simple {
         if (moscFile != null) {
             checkCircularReferences(moscFile.getAbsolutePath());
 
-            main(new String[]{COMMAND_MOSC_TO_XOSC_FULL, moscFile.getAbsolutePath(), resultingFileName});
+            String[] args = new String[]{COMMAND_MOSC_TO_XOSC_FULL, moscFile.getAbsolutePath(), resultingFileName};
+            checkCommandLineArguments(args);
+            convertMoscToXosc(args);
         }
 
         return scenarioFileName.replace(MODULAR_FILE_EXTENSION, SIMPLE_FILE_EXTENSION);
@@ -397,22 +429,26 @@ public class Modular2Simple {
         simpleManeuverGroupNode.getAttributes().getNamedItem("name").setNodeValue(oldManeuverGroupName + "." + newManeuverGroupName);
     }
 
-    private static void replaceParameterRefs(Node modularManeuverGroupNode, Node simpleManeuverGroupNode) {
+    private static void replaceParameterRefs(Node modularManeuverGroupNode, Node simpleManeuverGroupNode, String simpleScenarioManeuverGroupName) {
         Map<String, String> parameterReferenceKeyValuePairs =
-                getParameterReferenceKeyValuePairs(modularManeuverGroupNode);
+                getParameterReferenceKeyValuePairs(modularManeuverGroupNode, simpleScenarioManeuverGroupName);
         replaceParameterAttributesWithParameterReferenceKeys(simpleManeuverGroupNode, parameterReferenceKeyValuePairs);
     }
 
-    private static Map<String, String> getParameterReferenceKeyValuePairs(Node node) {
+    private static Map<String, String> getParameterReferenceKeyValuePairs(Node node, String maneuverGroupName) {
         NodeList parameterReferenceNodeList = ((Element) node).getElementsByTagName("ParameterReference");
 
         Map<String, String> parameterReferenceKeyValuePairs = new HashMap<>();
         for (int i = 0; i < parameterReferenceNodeList.getLength(); i++) {
-            Node parameterReferenceNode = parameterReferenceNodeList.item(i);
-            String parameterReferenceKey = parameterReferenceNode.getAttributes().item(0).getNodeValue();
-            String parameterReferenceValue = parameterReferenceNode.getAttributes().item(1).getNodeValue();
+            Node maneuverGroupReferenceNode = parameterReferenceNodeList.item(i).getParentNode();
+            boolean isForRequestedManeuverGroup = Objects.equals(maneuverGroupReferenceNode.getAttributes().getNamedItem("maneuverGroupName").getNodeValue(), maneuverGroupName);
+            if (isForRequestedManeuverGroup) {
+                Node parameterReferenceNode = parameterReferenceNodeList.item(i);
+                String parameterReferenceKey = parameterReferenceNode.getAttributes().item(0).getNodeValue();
+                String parameterReferenceValue = parameterReferenceNode.getAttributes().item(1).getNodeValue();
 
-            parameterReferenceKeyValuePairs.put(parameterReferenceKey, parameterReferenceValue);
+                parameterReferenceKeyValuePairs.put(parameterReferenceKey, parameterReferenceValue);
+            }
         }
 
         return parameterReferenceKeyValuePairs;
@@ -425,7 +461,7 @@ public class Modular2Simple {
             if (childNode instanceof Element childElement) {
                 String parameterAttributes = childElement.getAttribute(CHANGEABLE_ATTRIBUTES_KEY);
                 if (!parameterAttributes.isEmpty()) {
-                    childElement.removeAttribute(CHANGEABLE_ATTRIBUTES_KEY);
+//                    childElement.removeAttribute(CHANGEABLE_ATTRIBUTES_KEY);
                     Arrays.stream(parameterAttributes.split(","))
                             .forEach(attribute -> processAttribute(parameterReferenceKeyValuePairs, attribute.trim(), childElement));
                 }

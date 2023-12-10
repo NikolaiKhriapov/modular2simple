@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSCENARIO>
 
-    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:SimpleScenario2"
+    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:ModularScenario"
                 author="Nikolai Khriapov;Taha Drif"/>
 
     <ParameterDeclarations/>
@@ -37,7 +37,7 @@
             </Vehicle>
         </ScenarioObject>
         <ScenarioObject name="vehicle">
-            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+            <Vehicle name="vehicle.dodge.charger_police" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
                 <BoundingBox>
@@ -50,7 +50,7 @@
                 </Axles>
                 <Properties>
                     <Property name="type" value="simulation"/>
-                    <Property name="color" value="255,0,0"/>
+                    <Property name="color" value="0,0,0"/>
                 </Properties>
             </Vehicle>
         </ScenarioObject>
@@ -104,7 +104,7 @@
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
-                                <WorldPosition x="-29" y="-24.25" z="1" h="3.14"/>
+                                <WorldPosition x="-29" y="-27" z="1" h="3.14"/>
                             </Position>
                         </TeleportAction>
                     </PrivateAction>
@@ -114,84 +114,38 @@
         <Story name="MyStory">
             <Act name="Behavior">
 
-                <ManeuverGroup name="ArrivingToAccidentSite" maximumExecutionCount="1">
+                <ManeuverGroup maximumExecutionCount="1" name="VehicleArrivingToAccidentSite">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle"/>
                     </Actors>
-                    <Maneuver name="ArrivingToAccidentSite">
-                        <Event name="SetInitSpeed" priority="overwrite">
-                            <Action name="SetInitSpeed">
-                                <PrivateAction>
-                                    <LongitudinalAction>
-                                        <SpeedAction>
-                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="distance"/>
-                                            <SpeedActionTarget>
-                                                <AbsoluteTargetSpeed parameterAttributes="AbsoluteTargetSpeed.value" value="10"/>
-                                            </SpeedActionTarget>
-                                        </SpeedAction>
-                                    </LongitudinalAction>
-                                </PrivateAction>
-                            </Action>
-                            <StartTrigger>
-                                <ConditionGroup>
-                                    <Condition name="SetInitSpeedStartCondition" delay="0" conditionEdge="rising">
-                                        <ByEntityCondition>
-                                            <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="hero"/>
-                                            </TriggeringEntities>
-                                            <EntityCondition>
-                                                <StandStillCondition duration="2.0"/>
-                                            </EntityCondition>
-                                        </ByEntityCondition>
-                                    </Condition>
-                                </ConditionGroup>
-                            </StartTrigger>
-                        </Event>
-                        <Event name="SetRoute" priority="overwrite">
-                            <Action name="SetRoute">
-                                <PrivateAction>
-                                    <RoutingAction>
-                                        <AcquirePositionAction>
-                                            <Position>
-                                                <WorldPosition parameterAttributes="x,y,z,h" h="3.14" x="-103" y="-4" z="0"/>
-                                            </Position>
-                                        </AcquirePositionAction>
-                                    </RoutingAction>
-                                </PrivateAction>
-                            </Action>
-                            <StartTrigger>
-                                <ConditionGroup>
-                                    <Condition name="SetRouteStartCondition" delay="0" conditionEdge="rising">
-                                        <ByEntityCondition>
-                                            <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="hero"/>
-                                            </TriggeringEntities>
-                                            <EntityCondition>
-                                                <StandStillCondition parameterAttributes="duration" duration="3.0"/>
-                                            </EntityCondition>
-                                        </ByEntityCondition>
-                                    </Condition>
-                                </ConditionGroup>
-                            </StartTrigger>
-                        </Event>
-                        <Event name="TimeOutAfterArriving" priority="overwrite">
-                            <Action name="TimeOutAfterArriving"/>
-                            <StartTrigger>
-                                <ConditionGroup>
-                                    <Condition name="TimeOutAfterArrivingStartCondition" delay="0" conditionEdge="rising">
-                                        <ByEntityCondition>
-                                            <TriggeringEntities triggeringEntitiesRule="any">
-                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle"/>
-                                            </TriggeringEntities>
-                                            <EntityCondition>
-                                                <StandStillCondition duration="10.0"/>
-                                            </EntityCondition>
-                                        </ByEntityCondition>
-                                    </Condition>
-                                </ConditionGroup>
-                            </StartTrigger>
-                        </Event>
-                    </Maneuver>
+                    <ScenarioReference scenarioFileName="simple_2.xosc">
+                        <ManeuverGroupReference maneuverGroupName="ArrivingToAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="entityRef" value="vehicle"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-103"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="EntityCondition.StandStillCondition.duration" value="3.0"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="VehicleLeavingTheAccidentSite">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ManeuverGroupReference maneuverGroupName="LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="vehicle"/>
+                            <ParameterReference key="StandStillCondition.duration" value="15.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-350"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
                 </ManeuverGroup>
 
                 <StartTrigger>
@@ -221,7 +175,7 @@
                                     <EntityRef entityRef="hero"/>
                                 </TriggeringEntities>
                                 <EntityCondition>
-                                    <TraveledDistanceCondition value="200.0"/>
+                                    <TraveledDistanceCondition value="100.0"/>
                                 </EntityCondition>
                             </ByEntityCondition>
                         </Condition>
