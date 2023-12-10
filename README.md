@@ -1,13 +1,10 @@
 Modular2Simple
 ========================
-Modular2Simple is a tool designed to enhance scenario creation for the CARLA simulator by leveraging
-existing simple scenarios in the OpenSCENARIO format (.xosc). This tool allows to package a main scenario file
-along with the simple scenario files it references into a .mosc file (Modular Open Scenario). It not only
-works with simple scenarios (.xosc) but also has the capability to generate modular scenarios from existing modular
-scenarios, allowing for generating even more complex modular scenarios. Once the .mosc file is ready, Modular2Simple
-allows to convert the resulting modular scenario (.mosc) file into standard OpenSCENARIO (.xosc) file (that contains
-all the necessary data from the simple scenario files), which makes it fully compatible with the ScenarioRunner module
-of the CARLA simulator.
+Modular2Simple is a a tool designed to simplify the development of complex ADS scenarios. Modular2Simple seamlessly
+integrates with the CARLA simulator and is applicable to any software supporting the OpenSCENARIO format. By leveraging
+existing simple scenarios in the OpenSCENARIO format, Modular2Simple empowers developers to create modular scenarios
+through the combination of multiple simple or modular scenarios. This approach not only facilitates the development of
+complex scenarios but also encourages scenario reuse.
 
 Getting the Modular2Simple
 ---------------------------
