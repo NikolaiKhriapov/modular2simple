@@ -2,7 +2,7 @@
 <OpenSCENARIO>
 
     <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:SimpleScenario1"
-                author="Nikolai Khriapov"/>
+                author="Nikolai Khriapov;Taha Drif"/>
 
     <ParameterDeclarations/>
 
@@ -114,11 +114,11 @@
         <Story name="MyStory">
             <Act name="Behavior">
 
-                <ManeuverGroup name="ManeuverSequence" maximumExecutionCount="1">
+                <ManeuverGroup name="CollisionInit" maximumExecutionCount="1">
                     <Actors selectTriggeringEntities="false">
                         <EntityRef entityRef="vehicle_0"/>
                     </Actors>
-                    <Maneuver name="Maneuver1">
+                    <Maneuver name="CollisionInit">
                         <Event name="SetInitSpeed" priority="overwrite">
                             <Action name="SetInitSpeed">
                                 <PrivateAction>
@@ -135,7 +135,7 @@
                             </Action>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition parameterAttributes="delay" name="StartConditionSetInitSpeed" delay="0"
+                                    <Condition parameterAttributes="delay" name="SetInitSpeedStartCondition" delay="0"
                                                conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
@@ -163,7 +163,7 @@
                             </Action>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition name="StartConditionSetRoute" delay="0" conditionEdge="rising">
+                                    <Condition name="SetRouteStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
@@ -176,8 +176,8 @@
                                 </ConditionGroup>
                             </StartTrigger>
                         </Event>
-                        <Event name="SetFinalSpeed" priority="overwrite">
-                            <Action name="SetFinalSpeed">
+                        <Event name="StopVehicle" priority="overwrite">
+                            <Action name="StopVehicle">
                                 <PrivateAction>
                                     <LongitudinalAction>
                                         <SpeedAction>
@@ -191,7 +191,7 @@
                             </Action>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition name="StartConditionSetFinalSpeed" delay="0" conditionEdge="rising">
+                                    <Condition name="StopVehicleStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>
@@ -208,11 +208,11 @@
                                 </ConditionGroup>
                             </StartTrigger>
                         </Event>
-                        <Event name="DelayEvent" priority="overwrite">
-                            <Action name="Delay"/>
+                        <Event name="TimeOutAfterCollision" priority="overwrite">
+                            <Action name="TimeOutAfterCollision"/>
                             <StartTrigger>
                                 <ConditionGroup>
-                                    <Condition name="StartConditionDelayEvent" delay="0" conditionEdge="rising">
+                                    <Condition name="TimeOutAfterCollisionStartCondition" delay="0" conditionEdge="rising">
                                         <ByEntityCondition>
                                             <TriggeringEntities triggeringEntitiesRule="any">
                                                 <EntityRef parameterAttributes="entityRef" entityRef="vehicle_0"/>

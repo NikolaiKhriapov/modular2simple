@@ -2,7 +2,7 @@
 <OpenSCENARIO>
 
     <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:ModularScenario"
-                author="Nikolai Khriapov"/>
+                author="Nikolai Khriapov;Taha Drif"/>
 
     <ParameterDeclarations/>
 
@@ -32,11 +32,10 @@
                 </Axles>
                 <Properties>
                     <Property name="type" value="ego_vehicle"/>
-                    <Property name="color" value="255,0,0"/>
+                    <Property name="color" value="0,0,255"/>
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-
         <ScenarioObject name="vehicle_0">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
@@ -55,7 +54,7 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="vehicle_4">
+        <ScenarioObject name="vehicle_1">
             <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
@@ -73,8 +72,8 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="police_17">
-            <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">
+        <ScenarioObject name="police">
+            <Vehicle name="vehicle.dodge.charger_police" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
                 <BoundingBox>
@@ -91,9 +90,8 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-        <ScenarioObject name="ambulance_19">
-            <Vehicle name="vehicle.volkswagen.t2"
-                     vehicleCategory="car">  <!--Vehicle name="vehicle.ford.ambulance" vehicleCategory="car"-->
+        <ScenarioObject name="ambulance">
+            <Vehicle name="vehicle.ford.ambulance" vehicleCategory="car">
                 <ParameterDeclarations/>
                 <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
                 <BoundingBox>
@@ -110,7 +108,6 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
-
     </Entities>
 
     <Storyboard>
@@ -166,7 +163,7 @@
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="vehicle_4">
+                <Private entityRef="vehicle_1">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
@@ -175,7 +172,7 @@
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="police_17">
+                <Private entityRef="police">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
@@ -184,7 +181,7 @@
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
-                <Private entityRef="ambulance_19">
+                <Private entityRef="ambulance">
                     <PrivateAction>
                         <TeleportAction>
                             <Position>
@@ -204,7 +201,7 @@
                     <ScenarioReference scenarioFileName="simple_1.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
                         <ParameterReference key="Condition.delay" value="0.0"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-150"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
@@ -215,27 +212,27 @@
                         <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Vehicle4_SimpleScenario1">
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario1">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="vehicle_4"/>
+                        <EntityRef entityRef="vehicle_1"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_1.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
                         <ParameterReference key="Condition.delay" value="0.0"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
-                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-1000"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-20"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
-                        <ParameterReference key="entityRef" value="vehicle_4"/>
+                        <ParameterReference key="entityRef" value="vehicle_1"/>
                         <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
                         <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="1"/>
                         <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
                         <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="4.71"/>
                     </ScenarioReference>
                 </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Police17_SimpleScenario2">
+                <ManeuverGroup maximumExecutionCount="1" name="Police_SimpleScenario2">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="police_17"/>
+                        <EntityRef entityRef="police"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_2.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
@@ -247,9 +244,9 @@
                         <ParameterReference key="EntityCondition.StandStillCondition.duration" value="3.0"/>
                     </ScenarioReference>
                 </ManeuverGroup>
-                <ManeuverGroup maximumExecutionCount="1" name="Ambulance19_SimpleScenario2">
+                <ManeuverGroup maximumExecutionCount="1" name="Ambulance_SimpleScenario2">
                     <Actors selectTriggeringEntities="false">
-                        <EntityRef entityRef="ambulance_19"/>
+                        <EntityRef entityRef="ambulance"/>
                     </Actors>
                     <ScenarioReference scenarioFileName="simple_2.xosc">
                         <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
@@ -259,6 +256,67 @@
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
                         <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
                         <ParameterReference key="EntityCondition.StandStillCondition.duration" value="10.0"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle0_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_0"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                        <ParameterReference key="Condition.delay" value="15.0"/>
+                        <ParameterReference key="entityRef" value="police"/>
+                        <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_1"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                        <ParameterReference key="Condition.delay" value="15.0"/>
+                        <ParameterReference key="entityRef" value="police"/>
+                        <ParameterReference key="StandStillCondition.duration" value="6.0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-1000"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Police_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="police"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                        <ParameterReference key="Condition.delay" value="15.0"/>
+                        <ParameterReference key="entityRef" value="police"/>
+                        <ParameterReference key="StandStillCondition.duration" value="15.0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-350"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Ambulance_SimpleScenario3">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="ambulance"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_3.xosc">
+                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                        <ParameterReference key="Condition.delay" value="15.0"/>
+                        <ParameterReference key="entityRef" value="police"/>
+                        <ParameterReference key="StandStillCondition.duration" value="10.0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
                     </ScenarioReference>
                 </ManeuverGroup>
 
@@ -301,1165 +359,3 @@
     </Storyboard>
 
 </OpenSCENARIO>
-
-        <!--        <ScenarioObject name="vehicle_1">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_2">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_3">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="vehicle_5">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_6">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_7">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="150,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="vehicle_8">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_9">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_10">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_11">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="vehicle_12">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_13">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_14">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="vehicle_15">-->
-        <!--            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0, 150, 0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--<ScenarioObject name="police_16">-->
-        <!--    <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">-->
-        <!--        <ParameterDeclarations/>-->
-        <!--        <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--        <BoundingBox>-->
-        <!--            <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--            <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--        </BoundingBox>-->
-        <!--        <Axles>-->
-        <!--            <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--            <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--        </Axles>-->
-        <!--        <Properties>-->
-        <!--            <Property name="type" value="simulation"/>-->
-        <!--            <Property name="color" value="0,0,0"/>-->
-        <!--        </Properties>-->
-        <!--    </Vehicle>-->
-        <!--</ScenarioObject>-->
-        <!--        <ScenarioObject name="police_18">-->
-        <!--            <Vehicle name="vehicle.dodge_charger.police" vehicleCategory="car">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="0,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="ambulance_20">-->
-        <!--            <Vehicle name="vehicle.volkswagen.t2" vehicleCategory="car">  &lt;!&ndash;Vehicle name="vehicle.ford.ambulance" vehicleCategory="car"&ndash;&gt;-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="255,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="firetruck_21">-->
-        <!--            <Vehicle name="vehicle.carlamotors.carlacola" vehicleCategory="car">  &lt;!&ndash;Vehicle name="vehicle.carlamotors.firetruck" vehicleCategory="car"&ndash;&gt;-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Axles>-->
-        <!--                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>-->
-        <!--                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>-->
-        <!--                </Axles>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                    <Property name="color" value="255,0,0"/>-->
-        <!--                </Properties>-->
-        <!--            </Vehicle>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="pedestrian_22">-->
-        <!--            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                </Properties>-->
-        <!--            </Pedestrian>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_23">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_24">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_25">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="pedestrian_26">-->
-        <!--            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                </Properties>-->
-        <!--            </Pedestrian>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_27">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_28">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_29">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="pedestrian_30">-->
-        <!--            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                </Properties>-->
-        <!--            </Pedestrian>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_31">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_32">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="trafficcone_33">-->
-        <!--            <MiscObject miscObjectCategory="barrier" mass="0.0" name="Barrier1">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="0.0" y="0.0" z="0.0"/>-->
-        <!--                    <Dimensions width="0.0" length="0.0" height="0.0"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties/>-->
-        <!--            </MiscObject>-->
-        <!--        </ScenarioObject>-->
-
-        <!--        <ScenarioObject name="pedestrian_34">-->
-        <!--            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                </Properties>-->
-        <!--            </Pedestrian>-->
-        <!--        </ScenarioObject>-->
-        <!--        <ScenarioObject name="pedestrian_35">-->
-        <!--            <Pedestrian model="walker.pedestrian.0001" mass="90.0" name="walker.pedestrian.0001" pedestrianCategory="pedestrian">-->
-        <!--                <ParameterDeclarations/>-->
-        <!--                <BoundingBox>-->
-        <!--                    <Center x="1.5" y="0.0" z="0.9"/>-->
-        <!--                    <Dimensions width="2.1" length="4.5" height="1.8"/>-->
-        <!--                </BoundingBox>-->
-        <!--                <Properties>-->
-        <!--                    <Property name="type" value="simulation"/>-->
-        <!--                </Properties>-->
-        <!--            </Pedestrian>-->
-        <!--        </ScenarioObject>-->
-
-        <!--                <Private entityRef="vehicle_1">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-103" y="0" z="0" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_2">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-95.5" y="-4" z="0" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_3">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-95.5" y="0" z="0" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="vehicle_5">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-121" y="26" z="0" h="4.71"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_6">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-125" y="33.5" z="0" h="4.71"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_7">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-121" y="33.5" z="0" h="4.71"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="vehicle_8">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-125" y="48.5" z="0" h="-1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_9">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-121" y="48.5" z="0" h="-1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_10">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-125" y="56" z="0" h="-1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_11">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-121" y="56" z="0" h="-1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="vehicle_12">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-127.7" y="-44" z="0" h="1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_13">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-132" y="-44" z="0" h="1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_14">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-132" y="-51" z="0" h="1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="vehicle_15">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-127.7" y="-51" z="0" h="1.57"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--<Private entityRef="police_16">-->
-        <!--    <PrivateAction>-->
-        <!--        <TeleportAction>-->
-        <!--            <Position>-->
-        <!--                <WorldPosition x="-29" y="-24.25" z="1" h="3.14"/>-->
-        <!--            </Position>-->
-        <!--        </TeleportAction>-->
-        <!--    </PrivateAction>-->
-        <!--</Private>-->
-        <!--                <Private entityRef="police_18">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-29" y="-29.75" z="1" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="ambulance_20">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-29" y="-35.25" z="1" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="firetruck_21">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-22" y="-27" z="1" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="pedestrian_22">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-125" y="13" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_23">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-128" y="12" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_24">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-122" y="12" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_25">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-118" y="12" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="pedestrian_26">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-135" y="-7" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_27">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-128" y="-8" z="-500" h="1.67"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_28">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-128" y="-3" z="-500" h="1.67"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_29">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-128" y="2" z="-500" h="1.67"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="pedestrian_30">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-129" y="-16" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_31">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-128" y="-18" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_32">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-122" y="-18" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="trafficcone_33">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-118" y="-18" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <Private entityRef="pedestrian_34">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-107" y="-4" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-        <!--                <Private entityRef="pedestrian_35">-->
-        <!--                    <PrivateAction>-->
-        <!--                        <TeleportAction>-->
-        <!--                            <Position>-->
-        <!--                                <WorldPosition x="-107" y="-1" z="-500" h="3.14"/>-->
-        <!--                            </Position>-->
-        <!--                        </TeleportAction>-->
-        <!--                    </PrivateAction>-->
-        <!--                </Private>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle1_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_1"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="0.5"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-1000"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_1"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-115"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle2_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_2"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="1.5"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_2"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-115"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle3_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_3"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="2.0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_3"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-115"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle5_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_5"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="2.0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_5"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="6"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle6_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_6"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="2.0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_6"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="9"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle7_SimpleScenario1">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_7"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_1.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                        <ParameterReference key="Condition.delay" value="3.0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-121"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                        <ParameterReference key="entityRef" value="vehicle_7"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="1"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="11"/>-->
-        <!--                        <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="4.71"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle8_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_8"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle9_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_9"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle10_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_10"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle11_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_11"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle12_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_12"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle13_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_13"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle14_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_14"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Vehicle15_SimpleScenario3">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="vehicle_15"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_3.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--<ManeuverGroup maximumExecutionCount="1" name="Police16_SimpleScenario2">-->
-        <!--    <Actors selectTriggeringEntities="false">-->
-        <!--        <EntityRef entityRef="police_16"/>-->
-        <!--    </Actors>-->
-        <!--    <ScenarioReference scenarioFileName="simple_2.xosc">-->
-        <!--        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--    </ScenarioReference>-->
-        <!--</ManeuverGroup>-->
-        <!--        &lt;!&ndash;                <ManeuverGroup maximumExecutionCount="1" name="Police18_SimpleScenario2">&ndash;&gt;-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="police_18"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_2.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Ambulance20_SimpleScenario2">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="ambulance_20"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_2.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Firetruck21_SimpleScenario2">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="firetruck_21"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_2.xosc">-->
-        <!--                        <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian22_SimpleScenario4">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="pedestrian_22"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_4.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_22"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-125"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="13"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone23_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_23"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_23"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone24_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_24"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_24"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-122"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone25_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_25"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_25"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-118"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="12"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian26_SimpleScenario4">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="pedestrian_26"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_4.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_26"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-135"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-7"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone27_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_27"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_27"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-8"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone28_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_28"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_28"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-3"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone29_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_29"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_29"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="2"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="1.67"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian30_SimpleScenario4">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="pedestrian_30"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_4.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_30"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-129"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-16"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone31_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_31"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_31"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-128"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone32_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_32"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_32"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-122"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="TrafficCone33_SimpleScenario5">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="trafficcone_33"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_5.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="trafficcone_33"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-118"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-18"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian34_SimpleScenario4">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="pedestrian_34"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_4.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_34"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-107"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-4"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
-        <!--                <ManeuverGroup maximumExecutionCount="1" name="Pedestrian35_SimpleScenario4">-->
-        <!--                    <Actors selectTriggeringEntities="false">-->
-        <!--                        <EntityRef entityRef="pedestrian_35"/>-->
-        <!--                    </Actors>-->
-        <!--                    <ScenarioReference scenarioFileName="simple_4.xosc">-->
-        <!--                        <ParameterReference key="GlobalAction.EntityAction.entityRef" value="pedestrian_35"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.x" value="-107"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.y" value="-1"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.z" value="0"/>-->
-        <!--                        <ParameterReference key="AddEntityAction.Position.WorldPosition.h" value="3.14"/>-->
-        <!--                    </ScenarioReference>-->
-        <!--                </ManeuverGroup>-->
