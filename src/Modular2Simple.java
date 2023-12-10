@@ -237,18 +237,21 @@ public class Modular2Simple {
                 if (simpleScenarioFileName.endsWith(SIMPLE_FILE_EXTENSION)) {
                     LOGGER.fine("--- Handling simple scenario: '%s'".formatted(simpleScenarioFileName));
 
-                    NodeList simpleManeuverGroupNodeList = extractManeuverGroupNodesFromSimpleScenario(simpleScenarioFileName, fileModularPathAndName);
-
+                    NodeList maneuverGroupReferenceNodeList = ((Element) modularManeuverGroupNode).getElementsByTagName("ManeuverGroupReference");
                     List<Node> listOfSimpleManeuverGroupNodes = new ArrayList<>();
-                    if (simpleManeuverGroupNodeList != null) {
-                        for (int i = 0; i < simpleManeuverGroupNodeList.getLength(); i++) {
-                            replaceEntityRef(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i));
+                    for (int mgr = 0; mgr < maneuverGroupReferenceNodeList.getLength(); mgr++) {
+                        String simpleScenarioManeuverGroupName = maneuverGroupReferenceNodeList.item(mgr).getAttributes().getNamedItem("maneuverGroupName").getNodeValue();
 
-                            replaceManeuverGroupName(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i), i);
+                        Node simpleManeuverGroupNode = extractManeuverGroupNodeFromSimpleScenario(simpleScenarioFileName, fileModularPathAndName, simpleScenarioManeuverGroupName);
 
-                            replaceParameterRefs(modularManeuverGroupNode, simpleManeuverGroupNodeList.item(i));
+                        if (simpleManeuverGroupNode != null) {
+                            replaceEntityRef(modularManeuverGroupNode, simpleManeuverGroupNode);
 
-                            listOfSimpleManeuverGroupNodes.add(simpleManeuverGroupNodeList.item(i));
+                            replaceManeuverGroupName(modularManeuverGroupNode, simpleManeuverGroupNode);
+
+                            replaceParameterRefs(modularManeuverGroupNode, simpleManeuverGroupNode);
+
+                            listOfSimpleManeuverGroupNodes.add(simpleManeuverGroupNode);
                         }
                     }
                     replaceNode(modularManeuverGroupNode, listOfSimpleManeuverGroupNodes);
@@ -318,7 +321,7 @@ public class Modular2Simple {
         return modularScenarioReferenceNode.getAttributes().getNamedItem("scenarioFileName").getNodeValue();
     }
 
-    private static NodeList extractManeuverGroupNodesFromSimpleScenario(String simpleScenarioFileName, String fileModularPathAndName) {
+    private static Node extractManeuverGroupNodeFromSimpleScenario(String simpleScenarioFileName, String fileModularPathAndName, String maneuverGroupName) {
         File fileSimple = new File(EXTRACTION_PATH + simpleScenarioFileName);
         if (!fileSimple.exists()) {
             fileSimple = getFileFromEnvironment(simpleScenarioFileName, fileModularPathAndName);
@@ -334,7 +337,13 @@ public class Modular2Simple {
             InputSource inputSource = new InputSource(new StringReader(fileSimpleContent));
             Document document = builder.parse(inputSource);
 
-            return document.getElementsByTagName("ManeuverGroup");
+            NodeList maneuverGroupNodeList = document.getElementsByTagName("ManeuverGroup");
+            for (int i = 0; i < maneuverGroupNodeList.getLength(); i++) {
+                boolean isRequestedManeuverGroupNode = Objects.equals(maneuverGroupNodeList.item(i).getAttributes().getNamedItem("name").getNodeValue(), maneuverGroupName);
+                if (isRequestedManeuverGroupNode) {
+                    return maneuverGroupNodeList.item(i);
+                }
+            }
         } catch (ParserConfigurationException | SAXException | IOException e) {
             handleExceptionShutdown("An error occurred while extracting ManeuverGroup tag from simple scenario.", e);
         }
@@ -382,12 +391,10 @@ public class Modular2Simple {
         simpleEntityRefNode.getAttributes().getNamedItem("entityRef").setNodeValue(entityRef);
     }
 
-    private static void replaceManeuverGroupName(Node modularManeuverGroupNode, Node simpleManeuverGroupNode, int orderNumber) {
-        String entityRef = modularManeuverGroupNode.getAttributes().getNamedItem("name").getNodeValue();
-
-        String postfix = (orderNumber == 0) ? "" : "_" + (orderNumber + 1);
-
-        simpleManeuverGroupNode.getAttributes().getNamedItem("name").setNodeValue(entityRef + postfix);
+    private static void replaceManeuverGroupName(Node modularManeuverGroupNode, Node simpleManeuverGroupNode) {
+        String oldManeuverGroupName = modularManeuverGroupNode.getAttributes().getNamedItem("name").getNodeValue();
+        String newManeuverGroupName = simpleManeuverGroupNode.getAttributes().getNamedItem("name").getNodeValue();
+        simpleManeuverGroupNode.getAttributes().getNamedItem("name").setNodeValue(oldManeuverGroupName + "." + newManeuverGroupName);
     }
 
     private static void replaceParameterRefs(Node modularManeuverGroupNode, Node simpleManeuverGroupNode) {
