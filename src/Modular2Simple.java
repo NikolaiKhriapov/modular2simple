@@ -28,7 +28,7 @@ public class Modular2Simple {
 
     private static final String COMMAND_HELP_FULL = "--help";
     private static final String COMMAND_HELP_SHORT = "-h";
-    private static final String COMMAND_XOSC_TO_MOSC_FULL = "--package-xosc-into-mosc";
+    private static final String COMMAND_XOSC_TO_MOSC_FULL = "--convert-xosc-into-mosc";
     private static final String COMMAND_XOSC_TO_MOSC_SHORT = "-cxm";
     private static final String COMMAND_MOSC_TO_XOSC_FULL = "--convert-mosc-to-xosc";
     private static final String COMMAND_MOSC_TO_XOSC_SHORT = "-cmx";
