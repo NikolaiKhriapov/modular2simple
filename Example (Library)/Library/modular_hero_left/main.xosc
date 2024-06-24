@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+
+    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:ModularScenario" author="Nikolai Khriapov;Taha Drif"/>
+
+    <ParameterDeclarations/>
+
+    <CatalogLocations>
+        <ManeuverCatalog>
+            <Directory path="catalogs"/>
+        </ManeuverCatalog>
+    </CatalogLocations>
+
+    <RoadNetwork>
+        <LogicFile filepath="Town05"/>
+        <SceneGraphFile filepath=""/>
+    </RoadNetwork>
+
+    <Entities>
+        <ScenarioObject name="hero">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,0,255"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_left_1">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,255,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_left_2">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,255,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+    </Entities>
+
+    <Storyboard>
+        <Init>
+            <Actions>
+                <GlobalAction>
+                    <EnvironmentAction>
+                        <Environment name="Environment1">
+                            <TimeOfDay animation="false" dateTime="2020-03-20T12:00:00"/>
+                            <Weather cloudState="free">
+                                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                                <Fog visualRange="100000.0"/>
+                                <Precipitation precipitationType="dry" intensity="0.0"/>
+                            </Weather>
+                            <RoadCondition frictionScaleFactor="1.0"/>
+                        </Environment>
+                    </EnvironmentAction>
+                </GlobalAction>
+                <Private entityRef="hero">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-70" y="-1" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_left_1">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-124" y="55" z="0" h="4.71"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_left_2">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-124" y="65" z="0" h="4.71"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+            </Actions>
+        </Init>
+        <Story name="MyStory">
+            <Act name="Behavior">
+                <ManeuverGroup maximumExecutionCount="1" name="VehicleHero">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="hero"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_1.xosc">
+                        <ManeuverGroupReference maneuverGroupName="ManeuverGroupVehicle">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="8"/>
+                            <ParameterReference key="WorldPosition.x" value="-160"/>
+                            <ParameterReference key="WorldPosition.y" value="-1"/>
+                            <ParameterReference key="WorldPosition.z" value="0"/>
+                            <ParameterReference key="WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="TriggeringEntities.EntityRef.entityRef" value="hero"/>
+                            <ParameterReference key="TraveledDistanceCondition.value" value="5.0"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle_left">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_left_1"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_1.xosc">
+                        <ManeuverGroupReference maneuverGroupName="ManeuverGroupVehicle">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="8"/>
+                            <ParameterReference key="WorldPosition.x" value="-124"/>
+                            <ParameterReference key="WorldPosition.y" value="-60"/>
+                            <ParameterReference key="WorldPosition.z" value="0"/>
+                            <ParameterReference key="WorldPosition.h" value="4.71"/>
+                            <ParameterReference key="TriggeringEntities.EntityRef.entityRef" value="vehicle_left_1"/>
+                            <ParameterReference key="TraveledDistanceCondition.value" value="5.0"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle_left">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_left_2"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="simple_1.xosc">
+                        <ManeuverGroupReference maneuverGroupName="ManeuverGroupVehicle">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="8"/>
+                            <ParameterReference key="WorldPosition.x" value="-124"/>
+                            <ParameterReference key="WorldPosition.y" value="-50"/>
+                            <ParameterReference key="WorldPosition.z" value="0"/>
+                            <ParameterReference key="WorldPosition.h" value="4.71"/>
+                            <ParameterReference key="TriggeringEntities.EntityRef.entityRef" value="vehicle_left_2"/>
+                            <ParameterReference key="TraveledDistanceCondition.value" value="5.0"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                
+                <StartTrigger>
+                    <ConditionGroup>
+                        <Condition name="StartTriggerCondition" delay="5" conditionEdge="rising">
+                            <ByValueCondition>
+                                <SimulationTimeCondition value="0" rule="equalTo"/>
+                            </ByValueCondition>
+                        </Condition>
+                    </ConditionGroup>
+                </StartTrigger>
+                <StopTrigger>
+                    <ConditionGroup>
+                        <Condition name="StopTriggerCondition" delay="0" conditionEdge="rising">
+                            <ByEntityCondition>
+                                <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="hero"/>
+                                </TriggeringEntities>
+                                <EntityCondition>
+                                    <TraveledDistanceCondition value="200.0"/>
+                                </EntityCondition>
+                            </ByEntityCondition>
+                        </Condition>
+                    </ConditionGroup>
+                </StopTrigger>
+            </Act>
+        </Story>
+        <StopTrigger/>
+    </Storyboard>
+
+</OpenSCENARIO>

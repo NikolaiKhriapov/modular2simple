@@ -72,6 +72,78 @@
                 </Properties>
             </Vehicle>
         </ScenarioObject>
+        <ScenarioObject name="vehicle_11">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_12">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_13">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_14">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="255,0,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
         <ScenarioObject name="police">
             <Vehicle name="vehicle.dodge.charger_police" vehicleCategory="car">
                 <ParameterDeclarations/>
@@ -172,6 +244,42 @@
                         </TeleportAction>
                     </PrivateAction>
                 </Private>
+                <Private entityRef="vehicle_11">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-103" y="-4" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_12">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-103" y="-4" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_13">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-103" y="-4" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_14">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-103" y="-4" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
                 <Private entityRef="police">
                     <PrivateAction>
                         <TeleportAction>
@@ -251,6 +359,126 @@
                             <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-1000"/>
                             <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
                             <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="4.71"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle11">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_11"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="modular_1.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle12">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_12"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="modular_1.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle13">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_13"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="modular_1.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                    </ScenarioReference>
+                </ManeuverGroup>
+                <ManeuverGroup maximumExecutionCount="1" name="Vehicle14">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_14"/>
+                    </Actors>
+                    <ScenarioReference scenarioFileName="modular_1.mosc">
+                        <ManeuverGroupReference maneuverGroupName="VehicleCollisionInit.CollisionInit">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="6.8"/>
+                            <ParameterReference key="Condition.delay" value="0.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-500"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
+                            <ParameterReference key="entityRef" value="vehicle_0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.y" value="-4"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="ReachPositionCondition.Position.WorldPosition.h" value="3.14"/>
+                        </ManeuverGroupReference>
+                        <ManeuverGroupReference maneuverGroupName="VehicleLeaveAfterCollision.LeavingTheAccidentSite">
+                            <ParameterReference key="AbsoluteTargetSpeed.value" value="10"/>
+                            <ParameterReference key="Condition.delay" value="15.0"/>
+                            <ParameterReference key="entityRef" value="police"/>
+                            <ParameterReference key="StandStillCondition.duration" value="3.0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.x" value="-125"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.y" value="-400"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.z" value="0"/>
+                            <ParameterReference key="AcquirePositionAction.Position.WorldPosition.h" value="3.14"/>
                         </ManeuverGroupReference>
                     </ScenarioReference>
                 </ManeuverGroup>

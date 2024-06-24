@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+
+    <FileHeader revMajor="1" revMinor="0" date="2020-03-20T12:00:00" description="CARLA:SimpleScenario1"
+                author="Nikolai Khriapov;Taha Drif"/>
+
+    <ParameterDeclarations/>
+
+    <CatalogLocations>
+        <ManeuverCatalog>
+            <Directory path="catalogs"/>
+        </ManeuverCatalog>
+    </CatalogLocations>
+
+    <RoadNetwork>
+        <LogicFile filepath="Town05"/>
+        <SceneGraphFile filepath=""/>
+    </RoadNetwork>
+
+    <Entities>
+        <ScenarioObject name="hero">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="ego_vehicle"/>
+                    <Property name="color" value="0,0,255"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+        <ScenarioObject name="vehicle_front">
+            <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+                <ParameterDeclarations/>
+                <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+                <BoundingBox>
+                    <Center x="1.5" y="0.0" z="0.9"/>
+                    <Dimensions width="2.1" length="4.5" height="1.8"/>
+                </BoundingBox>
+                <Axles>
+                    <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+                    <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+                </Axles>
+                <Properties>
+                    <Property name="type" value="simulation"/>
+                    <Property name="color" value="0,255,0"/>
+                </Properties>
+            </Vehicle>
+        </ScenarioObject>
+    </Entities>
+
+    <Storyboard>
+        <Init>
+            <Actions>
+                <GlobalAction>
+                    <EnvironmentAction>
+                        <Environment name="Environment1">
+                            <TimeOfDay animation="false" dateTime="2020-03-20T12:00:00"/>
+                            <Weather cloudState="free">
+                                <Sun intensity="0.85" azimuth="0" elevation="1.31"/>
+                                <Fog visualRange="100000.0"/>
+                                <Precipitation precipitationType="dry" intensity="0.0"/>
+                            </Weather>
+                            <RoadCondition frictionScaleFactor="1.0"/>
+                        </Environment>
+                    </EnvironmentAction>
+                </GlobalAction>
+                <Private entityRef="hero">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="0" y="-1" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+                <Private entityRef="vehicle_front">
+                    <PrivateAction>
+                        <TeleportAction>
+                            <Position>
+                                <WorldPosition x="-10" y="-1" z="0" h="3.14"/>
+                            </Position>
+                        </TeleportAction>
+                    </PrivateAction>
+                </Private>
+            </Actions>
+        </Init>
+        <Story name="MyStory">
+            <Act name="Behavior">
+                <ManeuverGroup name="ManeuverGroupHeroVehicle" maximumExecutionCount="1">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="hero"/>
+                    </Actors>
+                    <Maneuver name="SetInitSpeedVehicleManeuver">
+                        <Event name="SetInitSpeedVehicle" priority="overwrite">
+                            <Action name="SetInitSpeedVehicle">
+                                <PrivateAction>
+                                    <LongitudinalAction>
+                                        <SpeedAction>
+                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="distance"/>
+                                            <SpeedActionTarget>
+                                                <AbsoluteTargetSpeed parameterAttributes="value" value="8"/>
+                                            </SpeedActionTarget>
+                                        </SpeedAction>
+                                    </LongitudinalAction>
+                                </PrivateAction>
+                            </Action>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="SetInitSpeedStartCondition" delay="0" conditionEdge="rising">
+                                        <ByValueCondition>
+                                            <SimulationTimeCondition value="0" rule="equalTo"/>
+                                        </ByValueCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                        <Event name="TimeOutVehicleEvent" priority="overwrite">
+                            <Action name="TimeOutVehicle"/>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="TimeOutStartConditionVehicle" delay="0" conditionEdge="rising">
+                                        <ByValueCondition>
+                                            <SimulationTimeCondition value="100" rule="equalTo"/>
+                                        </ByValueCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                    </Maneuver>
+                </ManeuverGroup>
+                <ManeuverGroup name="ManeuverGroupFrontVehicle" maximumExecutionCount="1">
+                    <Actors selectTriggeringEntities="false">
+                        <EntityRef entityRef="vehicle_front"/>
+                    </Actors>
+                    <Maneuver name="SetInitSpeedVehicleManeuver">
+                        <Event name="SetInitSpeedVehicle" priority="overwrite">
+                            <Action name="SetInitSpeedVehicle">
+                                <PrivateAction>
+                                    <LongitudinalAction>
+                                        <SpeedAction>
+                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="distance"/>
+                                            <SpeedActionTarget>
+                                                <AbsoluteTargetSpeed parameterAttributes="value" value="8"/>
+                                            </SpeedActionTarget>
+                                        </SpeedAction>
+                                    </LongitudinalAction>
+                                </PrivateAction>
+                            </Action>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="SetInitSpeedStartCondition" delay="0" conditionEdge="rising">
+                                        <ByValueCondition>
+                                            <SimulationTimeCondition value="0" rule="equalTo"/>
+                                        </ByValueCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                        <Event name="StopVehicle" priority="overwrite">
+                            <Action name="StopVehicle">
+                                <PrivateAction>
+                                    <LongitudinalAction>
+                                        <SpeedAction>
+                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="distance"/>
+                                            <SpeedActionTarget>
+                                                <RelativeTargetSpeed parameterAttributes="continuous,entityRef,speedTargetValueType,value" continuous="false" entityRef="hero" speedTargetValueType="factor" value="0"/>
+                                            </SpeedActionTarget>
+                                        </SpeedAction>
+                                    </LongitudinalAction>
+                                </PrivateAction>
+                            </Action>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="StopCondition" delay="0" conditionEdge="rising">
+                                        <ByEntityCondition>
+                                            <TriggeringEntities triggeringEntitiesRule="any">
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_front"/>
+                                            </TriggeringEntities>
+                                            <EntityCondition>
+                                                <TraveledDistanceCondition parameterAttributes="value" value="10.0"/>
+                                            </EntityCondition>
+                                        </ByEntityCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                        <Event name="SetFinalSpeedVehicle" priority="overwrite">
+                            <Action name="SetFinalSpeedVehicle">
+                                <PrivateAction>
+                                    <LongitudinalAction>
+                                        <SpeedAction>
+                                            <SpeedActionDynamics dynamicsShape="step" value="0" dynamicsDimension="distance"/>
+                                            <SpeedActionTarget>
+                                                <AbsoluteTargetSpeed parameterAttributes="value" value="8"/>
+                                            </SpeedActionTarget>
+                                        </SpeedAction>
+                                    </LongitudinalAction>
+                                </PrivateAction>
+                            </Action>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="SetFinalSpeedStartCondition" delay="5" conditionEdge="rising">
+                                        <ByEntityCondition>
+                                            <TriggeringEntities triggeringEntitiesRule="any">
+                                                <EntityRef parameterAttributes="entityRef" entityRef="vehicle_front"/>
+                                            </TriggeringEntities>
+                                            <EntityCondition>
+                                                <SpeedCondition parameterAttributes="rule,value" rule="equalTo" value="0"/>
+                                            </EntityCondition>
+                                        </ByEntityCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                        <Event name="TimeOutVehicleEvent" priority="overwrite">
+                            <Action name="TimeOutVehicle"/>
+                            <StartTrigger>
+                                <ConditionGroup>
+                                    <Condition name="TimeOutStartConditionVehicle" delay="0" conditionEdge="rising">
+                                        <ByValueCondition>
+                                            <SimulationTimeCondition value="100" rule="equalTo"/>
+                                        </ByValueCondition>
+                                    </Condition>
+                                </ConditionGroup>
+                            </StartTrigger>
+                        </Event>
+                    </Maneuver>
+                </ManeuverGroup>
+
+                <StartTrigger>
+                    <ConditionGroup>
+                        <Condition name="OverallStartCondition" delay="0" conditionEdge="rising">
+                            <ByEntityCondition>
+                                <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="hero"/>
+                                </TriggeringEntities>
+                                <EntityCondition>
+                                    <TraveledDistanceCondition value="0.0"/>
+                                </EntityCondition>
+                            </ByEntityCondition>
+                        </Condition>
+                        <Condition name="StartTime" delay="0" conditionEdge="rising">
+                            <ByValueCondition>
+                                <SimulationTimeCondition value="0" rule="equalTo"/>
+                            </ByValueCondition>
+                        </Condition>
+                    </ConditionGroup>
+                </StartTrigger>
+                <StopTrigger>
+                    <ConditionGroup>
+                        <Condition name="EndCondition" delay="0" conditionEdge="rising">
+                            <ByEntityCondition>
+                                <TriggeringEntities triggeringEntitiesRule="any">
+                                    <EntityRef entityRef="hero"/>
+                                </TriggeringEntities>
+                                <EntityCondition>
+                                    <TraveledDistanceCondition value="200.0"/>
+                                </EntityCondition>
+                            </ByEntityCondition>
+                        </Condition>
+                    </ConditionGroup>
+                </StopTrigger>
+            </Act>
+        </Story>
+        <StopTrigger/>
+    </Storyboard>
+
+</OpenSCENARIO>
