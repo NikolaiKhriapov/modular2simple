@@ -24,27 +24,27 @@ Using the Modular2Simple
 
 #### To package a set of .xosc files into a .mosc file, use the following command:
 
-* java Modular2Simple --convert-xosc-to-mosc <input_xosc_(mosc)_files> <output_mosc_file>
+* java Modular2Simple --convert-xosc-into-mosc <input_xosc_(mosc)_files> <output_mosc_file>
 
 Replace <input_xosc_(mosc)_files> with the path to input .xosc (.mosc) files (the main scenario file must be named
 'main.xosc'), and <output_mosc_file> with the desired path for the output modular scenario file.
 
 Example
 
-* java Modular2Simple --convert-xosc-to-mosc main.xosc simple_1.xosc simple_2.xosc modular.mosc
+* java Modular2Simple --convert-xosc-into-mosc main.xosc simple_1.xosc simple_2.xosc modular.mosc
 
 This command will package the 'main.xosc', 'simple_1.xosc' and 'simple_2.xosc' files into the 'modular.mosc' file.
 
 #### To convert a .mosc file to a .xosc scenario file, use the following command:
 
-* java Modular2Simple --convert-mosc-to-xosc <input_mosc_file> <output_xosc_file>
+* java Modular2Simple --convert-mosc-into-xosc <input_mosc_file> <output_xosc_file>
 
 Replace <input_mosc_file> with the path to the input modular package file, and <output_xosc_file> with the desired path
 for the output complex scenario file.
 
 Example
 
-* java Modular2Simple --convert-mosc-to-xosc modular.mosc resulting_complex.xosc
+* java Modular2Simple --convert-mosc-into-xosc modular.mosc resulting_complex.xosc
 
 This command will convert the 'modular.mosc' file into a scenario file named 'resulting_complex.xosc'.
 
